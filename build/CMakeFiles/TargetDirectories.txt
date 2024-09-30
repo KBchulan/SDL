@@ -1,3 +1,0 @@
-/home/whx/文档/code/github/SDL/build/CMakeFiles/lowr_protect.dir
-/home/whx/文档/code/github/SDL/build/CMakeFiles/edit_cache.dir
-/home/whx/文档/code/github/SDL/build/CMakeFiles/rebuild_cache.dir
