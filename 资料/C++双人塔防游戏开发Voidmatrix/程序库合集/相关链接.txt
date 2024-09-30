@@ -1,0 +1,8 @@
+SDL2 API 文档总览：https://wiki.libsdl.org/SDL2/CategoryAPI
+
+cJSON 仓库链接：https://github.com/DaveGamble/cJSON
+SDL2 仓库链接：https://github.com/libsdl-org/SDL
+SDL_ttf 仓库链接：https://github.com/libsdl-org/SDL_ttf
+SDL_mixer 仓库链接：https://github.com/libsdl-org/SDL_mixer
+SDL_image 仓库链接：https://github.com/libsdl-org/SDL_image
+SDL2_gfx 官网链接：https://www.ferzkopp.net/wordpress/2016/01/02/sdl_gfx-sdl2_gfx/
