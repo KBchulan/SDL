@@ -4,7 +4,8 @@
 
  1. cmake-3.25.3
 
-    进入https://cmake.org/files/v3.25/，选择下图所示压缩包下载：
+    进入https://cmake.org/files/v3.25/
+    选择下图所示压缩包下载：
 
     ![cmake](/home/whx/图片/截图/cmake.png)
 
@@ -26,7 +27,7 @@
     sudo apt install essential
     ```
 
- 2. SDL全家桶，包括SDL，SDL_image，SDL_mixer，SDL_ttf（此处我们均选择版本2）
+ 3. SDL全家桶，包括SDL，SDL_image，SDL_mixer，SDL_ttf（此处我们均选择版本2）
 
     上面四个配置方式一样，此处以SDL_image为例:
 
