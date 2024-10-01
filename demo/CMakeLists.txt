@@ -27,7 +27,7 @@ target_include_directories(lowr_protect PUBLIC
     ${SDL2_GFX_INCLUDE_DIRS}
     )
     
-target_link_libraries(lowr_protect PUBLIC 
+target_link_libraries(lowr_protect PUBLIC
     SDL2::SDL2
     SDL2_mixer::SDL2_mixer
     SDL2_image::SDL2_image

@@ -1,5 +1,5 @@
-#ifndef _SDL_CONFIG_H
-#define _SDL_CONFIG_H
+#ifndef _CONFIG_H
+#define _CONFIG_H
 
 // SDL2 头文件
 #include <SDL2/SDL.h>
@@ -14,4 +14,4 @@
 
 bool running = true;
 
-#endif // _SDL_CONFIG_H 
+#endif // _CONFIG_H 

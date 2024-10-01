@@ -11,10 +11,10 @@ int main()
     TTF_Init();
 
     // 音频采样率，格式，通道数（2为立体声），缓冲区大小（大一些可以提高音频播放的实时性）
-
-    printf("Mix_OpenAudio error: %s\n", Mix_GetError());
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
 
     SDL_Window *window = SDL_CreateWindow(u8"样例程序", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE);
+    // 窗口，-1表示使用默认渲染器，SDL_RENDERER_ACCELERATED表示使用硬件加速渲染
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_Event event;
 
@@ -24,6 +24,7 @@ int main()
 
     // 字体从文件加载成TTF_Font
     TTF_Font *font = TTF_OpenFont("../resources/ipix.ttf", 32);
+    // RGBA颜色
     SDL_Color color = {255, 255, 255, 255};
     SDL_Surface *sur_text = TTF_RenderText_Blended(font, u8"Hello SDL", color);
     SDL_Texture *tex_text = SDL_CreateTextureFromSurface(renderer, sur_text);
@@ -80,9 +81,8 @@ int main()
 
         // 渲染
         SDL_RenderCopy(renderer, tex_img, nullptr, &rect_img);
-        filledCircleRGBA(renderer, mouse_pos.x, mouse_pos.y, 50, 212, 56, 113, 125);
+        filledCircleRGBA(renderer, mouse_pos.x, mouse_pos.y, 50, 112, 216, 113, 205);
         SDL_RenderCopy(renderer, tex_text, nullptr, &rect_text);
-
         SDL_RenderPresent(renderer);
 
         if (delta * 1000 < 1000.0 / FPS)
