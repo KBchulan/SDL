@@ -80,8 +80,8 @@ int main()
         SDL_RenderClear(renderer);
 
         // 渲染
-        // SDL_RenderCopy(renderer, tex_img, nullptr, &rect_img);
-        // SDL_RenderCopy(renderer, tex_text, nullptr, &rect_text);
+        SDL_RenderCopy(renderer, tex_img, nullptr, &rect_img);
+        SDL_RenderCopy(renderer, tex_text, nullptr, &rect_text);
         filledCircleRGBA(renderer, mouse_pos.x, mouse_pos.y, 50, 112, 216, 113, 205);
         SDL_RenderPresent(renderer);
 
