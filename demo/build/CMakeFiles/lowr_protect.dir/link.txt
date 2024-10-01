@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/lowr_protect.dir/src/main.cpp.o -o lowr_protect  -Wl,-rpath,/usr/local/lib /usr/local/lib/libSDL2-2.0.so.0.3100.0 /usr/local/lib/libSDL2_mixer.so /usr/local/lib/libSDL2_image.so /usr/local/lib/libSDL2_ttf.so -lSDL2_gfx -lSDL2 
