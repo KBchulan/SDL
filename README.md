@@ -48,44 +48,15 @@
 
 ​	由于此项目无cmake管理，使用传统的makefile，在安装上与2一模一样，但是在CMakeList.txt的编写却是不同：
 
-```
-cmake_minimum_required(VERSION 3.24)
-
-project(lowr_protect)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(SDL2 REQUIRED)
-find_package(SDL2_mixer REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_ttf REQUIRED)
-
+```bash
 # 需要通过pkg来寻找
 find_package(PkgConfig REQUIRED)
 
 pkg_search_module(SDL2_GFX REQUIRED SDL2_gfx)
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
-aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_LIST)
-
-add_executable(lowr_protect ${SRC_LIST})
-
-target_include_directories(lowr_protect PUBLIC 
-    ${SDL2_INCLUDE_DIRS} 
-    ${SDL2_MIXER_INCLUDE_DIRS}
-    ${SDL2_IMAGE_INCLUDE_DIRS}
-    ${SDL2_TTF_INCLUDE_DIRS}
-    ${SDL2_GFX_INCLUDE_DIRS}
-    )
+target_include_directories(lowr_protect PUBLIC ${SDL2_GFX_INCLUDE_DIRS})
     
-target_link_libraries(lowr_protect PUBLIC 
-    SDL2::SDL2
-    SDL2_mixer::SDL2_mixer
-    SDL2_image::SDL2_image
-    SDL2_ttf::SDL2_ttf
-    ${SDL2_GFX_LIBRARIES}
-    )
+target_link_libraries(lowr_protect PUBLIC ${SDL2_GFX_LIBRARIES})
 
 target_compile_options(lowr_protect PUBLIC ${SDL2_CFLAGS_OTHER})
 ```
