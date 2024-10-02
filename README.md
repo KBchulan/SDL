@@ -62,3 +62,20 @@ target_link_libraries(lowr_protect PUBLIC ${SDL2_GFX_LIBRARIES})
 target_compile_options(lowr_protect PUBLIC ${SDL2_CFLAGS_OTHER})
 ```
 
+4.音频驱动：
+
+​	事实上ubuntu无法直接使用SDL_init(SDL_INIT_EVERYTHING)，以及对应mixer的Open都无法使用，此处直接给出解决方案:
+
+```bash
+# 先安装如下两个音频库
+sudo apt-get install libasound2-dev libpulse-dev
+# 第二步重新构建SDL2
+cd SDL
+cd build && sudo make uninstall
+cd ..
+rm build -r
+mkdir build && cd build
+cmake .. && make && sudo make install
+# 这样就能正常使用了
+```
+

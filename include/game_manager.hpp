@@ -49,10 +49,6 @@ protected:
     {
         // 初始化
         init_assert(!TTF_Init(), u8"SDL2_ttf初始化失败!");
-        if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-        {
-            fprintf(stderr, "SDL_Init failed: %s\n", SDL_GetError());
-        }
         init_assert(!SDL_Init(SDL_INIT_EVERYTHING), u8"SDL2初始化失败!");
         init_assert(Mix_Init(MIX_INIT_MP3 | MIX_INIT_MOD | MIX_INIT_MID), u8"SDL2_mixer初始化失败!");
         init_assert(IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_JXL | IMG_INIT_TIF), u8"SDL2_image初始化失败!");

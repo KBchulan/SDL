@@ -80,7 +80,7 @@ int main()
     SDL_Texture *tex_text = SDL_CreateTextureFromSurface(renderer, sur_text);
 
     // 音乐从文件加载成Mix_Chunk
-    Mix_Music *music = Mix_LoadMUS("../resources/Skyline.mp3");
+    Mix_Music *music = Mix_LoadMUS("../resources/music.mp3");
     Mix_FadeInMusic(music, -1, 1500);
 
     SDL_Point mouse_pos = {0, 0};
