@@ -13,6 +13,7 @@ find_package(SDL2_ttf REQUIRED)
 find_package(PkgConfig REQUIRED)
 
 pkg_search_module(SDL2_GFX REQUIRED SDL2_gfx)
+pkg_search_module(cJSON REQUIRED libcjson)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/include)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
@@ -25,6 +26,7 @@ target_include_directories(lowr_protect PUBLIC
     ${SDL2_IMAGE_INCLUDE_DIRS}
     ${SDL2_TTF_INCLUDE_DIRS}
     ${SDL2_GFX_INCLUDE_DIRS}
+    ${cJSON_INCLUDE_DIRS}
     )
     
 target_link_libraries(lowr_protect PUBLIC
@@ -33,6 +35,7 @@ target_link_libraries(lowr_protect PUBLIC
     SDL2_image::SDL2_image
     SDL2_ttf::SDL2_ttf
     ${SDL2_GFX_LIBRARIES}
+    ${cJSON_LIBRARIES}
     )
 
 target_compile_options(lowr_protect PUBLIC ${SDL2_CFLAGS_OTHER})

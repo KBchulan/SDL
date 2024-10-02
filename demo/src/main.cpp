@@ -3,8 +3,58 @@
 // 个人头文件
 #include "../include/config.hpp"
 
+void test_json()
+{
+    std::fstream file("../resources/test.json", std::ios::in);
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open file" << std::endl;
+    }
+
+    std::stringstream str_stream;
+    str_stream << file.rdbuf();
+    file.close();
+
+    cJSON *json_root = cJSON_Parse(str_stream.str().c_str());
+
+    cJSON *json_name = cJSON_GetObjectItem(json_root, "name");
+    cJSON *json_age = cJSON_GetObjectItem(json_root, "age");
+    cJSON *json_gender = cJSON_GetObjectItem(json_root, "gender");
+    cJSON *json_address = cJSON_GetObjectItem(json_root, "address");
+
+    std::cout << json_name->string << ":" << json_name->valuestring << std::endl;
+    std::cout << json_age->string << ":" << json_age->valueint << std::endl;
+    std::cout << json_gender->string << ":" << json_gender->valuestring << std::endl;
+    std::cout << json_address->string << ":" << json_address->valuestring << std::endl;
+}
+
+void test_csv()
+{
+    std::fstream file("../resources/test.csv", std::ios::in);
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open file" << std::endl;
+    }
+
+    std::string str_line;
+    while (std::getline(file, str_line))
+    {
+        std::string str_value;
+        std::stringstream str_stream(str_line);
+        while (std::getline(str_stream, str_value, ','))
+        {
+            std::cout << str_value << " ";
+        }
+        std::cout << std::endl;
+    }
+    file.close();
+}
+
 int main()
 {
+    test_json();
+    test_csv();
+
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
     Mix_Init(MIX_INIT_MP3);

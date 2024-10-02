@@ -8,8 +8,16 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
-#define WINDOW_WIDTH 2400
-#define WINDOW_HEIGHT 1560
+// c++ 头文件
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+// cjson 头文件
+#include <cjson/cJSON.h>
+
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 560
 #define FPS 144
 
 bool running = true;
