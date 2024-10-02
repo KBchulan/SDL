@@ -79,3 +79,12 @@ cmake .. && make && sudo make install
 # 这样就能正常使用了
 ```
 
+5.wine(用于运行windows上打包的程序):
+
+```bash
+sudo dpkg --add-architecture i386
+sudo apt update
+sudo apt install wine
+# 这个比较大，后续可以直接用wine /path/*.exe运行惹
+```
+
