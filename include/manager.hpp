@@ -15,13 +15,14 @@ public:
 private:
     static T *manager;
 
-private:
+protected:
     Manager() = default;
     ~Manager() = default;
     Manager(const Manager &) = delete;
     Manager &operator=(const Manager &) = delete;
 };
 
-
+template <typename T>
+T *Manager<T>::manager = nullptr;
 
 #endif // MANAGER_H

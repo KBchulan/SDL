@@ -14,6 +14,7 @@ find_package(PkgConfig REQUIRED)
 
 pkg_search_module(SDL2_GFX REQUIRED SDL2_gfx)
 pkg_search_module(cJSON REQUIRED libcjson)
+pkg_search_module(ALSA REQUIRED alsa-topology)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_LIST)
@@ -27,6 +28,7 @@ target_include_directories(lowr_protect PUBLIC
     ${SDL2_TTF_INCLUDE_DIRS}
     ${SDL2_GFX_INCLUDE_DIRS}
     ${cJSON_INCLUDE_DIRS}
+    ${ALSA_INCLUDE_DIRS}
     )
     
 target_link_libraries(lowr_protect PUBLIC
@@ -36,6 +38,7 @@ target_link_libraries(lowr_protect PUBLIC
     SDL2_ttf::SDL2_ttf
     ${SDL2_GFX_LIBRARIES}
     ${cJSON_LIBRARIES}
+    ${ALSA_LIBRARIES}
     )
 
 target_compile_options(lowr_protect PUBLIC ${SDL2_CFLAGS_OTHER})

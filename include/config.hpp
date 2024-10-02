@@ -23,12 +23,12 @@ time: 2024.10.2
 // cJSON头文件
 #include <cjson/cJSON.h>
 
-// 自定义头文件
-#include "manager.hpp"
-
-//窗口属性
+// 窗口属性
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
 
+// 游戏基础属性
+bool running = true;
+const int FPS = 144;
 
 #endif // CONFIG_H
