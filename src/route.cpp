@@ -44,7 +44,7 @@ Route::Route(const TileMap &map, const SDL_Point &idx_origin)
             break;
         }
 
-        if(!is_next_dir_exist)
+        if (!is_next_dir_exist)
             break;
     }
 }

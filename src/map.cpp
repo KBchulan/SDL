@@ -60,6 +60,16 @@ size_t Map::get_height() const
     return tile_map.size();
 }
 
+const TileMap &Map::get_tile_map() const
+{
+    return tile_map;
+}
+
+const SDL_Point &Map::get_idx_home() const
+{
+    return idx_home;
+}
+
 std::string Map::trim_str(const std::string &str)
 {
     size_t idx_begin = str.find_first_not_of(" \t");

@@ -23,6 +23,12 @@ public:
     // 获取地图的高度（索引）
     size_t get_height() const;
 
+    // 提供对外接口返回地图
+    const TileMap &get_tile_map() const;
+
+    // 提供对外接口返回房屋
+    const SDL_Point &get_idx_home() const;
+
 private:
     TileMap tile_map;
     SDL_Point idx_home = {0, 0};
