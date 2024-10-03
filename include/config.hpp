@@ -18,6 +18,7 @@ time: 2024.10.2
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <unordered_map>
 
 // cJSON头文件
@@ -26,6 +27,9 @@ time: 2024.10.2
 // 窗口属性
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 72
+
+// 瓦片尺寸
+#define TILE_SIZE 48
 
 // 游戏基础属性
 inline bool running = true;
