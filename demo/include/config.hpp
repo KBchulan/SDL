@@ -16,8 +16,8 @@
 // cjson 头文件
 #include <cjson/cJSON.h>
 
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 560
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 720
 #define FPS 144
 
 bool running = true;

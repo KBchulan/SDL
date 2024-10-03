@@ -3,8 +3,8 @@
 user: whx
 time: 2024.10.2
 */
-#ifndef CONFIG_H
-#define CONFIG_H
+#ifndef CONFIG_HPP
+#define CONFIG_HPP
 
 // SDL头文件
 #include <SDL2/SDL.h>
@@ -25,10 +25,10 @@ time: 2024.10.2
 
 // 窗口属性
 #define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
+#define WINDOW_HEIGHT 72
 
 // 游戏基础属性
-bool running = true;
+inline bool running = true;
 const int FPS = 144;
 
-#endif // CONFIG_H
+#endif // CONFIG_HPP

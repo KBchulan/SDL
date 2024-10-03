@@ -1,5 +1,5 @@
-#ifndef MANAGER_H
-#define MANAGER_H
+#ifndef MANAGER_HPP
+#define MANAGER_HPP
 
 template <typename T>
 class Manager
@@ -25,4 +25,4 @@ protected:
 template <typename T>
 T *Manager<T>::manager = nullptr;
 
-#endif // MANAGER_H
+#endif // MANAGER_HPP
