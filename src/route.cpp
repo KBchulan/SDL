@@ -49,6 +49,11 @@ Route::Route(const TileMap &map, const SDL_Point &idx_origin)
     }
 }
 
+const Route::IdxLists &Route::get_idx_lists() const
+{
+    return idx_lists;
+}
+
 bool Route::check_duplicate_idx(const SDL_Point &target_idx)
 {
     for (const auto &idx : idx_lists)

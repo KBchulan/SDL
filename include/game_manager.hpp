@@ -1,8 +1,8 @@
 #ifndef GAME_MANAGER_HPP
 #define GANE_MANAGER_HPP
 
-#include "manager.hpp"
 #include "config.hpp"
+#include "manager.hpp"
 
 class GameManager : public Manager<GameManager>
 {

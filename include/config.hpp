@@ -26,7 +26,7 @@ time: 2024.10.2
 
 // 窗口属性
 #define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 72
+#define WINDOW_HEIGHT 720
 
 // 瓦片尺寸
 #define TILE_SIZE 48

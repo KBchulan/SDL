@@ -70,6 +70,16 @@ const SDL_Point &Map::get_idx_home() const
     return idx_home;
 }
 
+const Map::SpawnerRoutePool &Map::get_idx_spawner_pool() const
+{
+    return spawner_route_pool;
+}
+
+void Map::place_tower(const SDL_Point &idx_tile)
+{
+    tile_map[idx_tile.y][idx_tile.x].has_tower = true;
+}
+
 std::string Map::trim_str(const std::string &str)
 {
     size_t idx_begin = str.find_first_not_of(" \t");

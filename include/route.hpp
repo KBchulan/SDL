@@ -17,10 +17,7 @@ public:
     Route(const TileMap &map, const SDL_Point &idx_origin);
 
     // 返回路线
-    const IdxLists &get_idx_lists() const
-    {
-        return idx_lists;
-    }
+    const IdxLists &get_idx_lists() const;
 
 private:
     IdxLists idx_lists;

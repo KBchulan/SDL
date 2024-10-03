@@ -29,6 +29,12 @@ public:
     // 提供对外接口返回房屋
     const SDL_Point &get_idx_home() const;
 
+    // 提供对外接口返回路线池
+    const SpawnerRoutePool &get_idx_spawner_pool() const;
+
+    // 放置防御塔
+    void place_tower(const SDL_Point &idx_tile);
+
 private:
     TileMap tile_map;
     SDL_Point idx_home = {0, 0};
