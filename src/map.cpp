@@ -46,6 +46,20 @@ bool Map::load(const std::string &path)
     return true;
 }
 
+size_t Map::get_width() const
+{
+    if (tile_map.empty())
+        return 0;
+    return tile_map[0].size();
+}
+
+size_t Map::get_height() const
+{
+    if (tile_map.empty())
+        return 0;
+    return tile_map.size();
+}
+
 std::string Map::trim_str(const std::string &str)
 {
     size_t idx_begin = str.find_first_not_of(" \t");
@@ -92,4 +106,24 @@ void Map::load_tile_from_string(Tile &tile, const std::string &str)
     tile.special_flag = (values.size() < 4)
                             ? -1
                             : values[3];
+}
+
+void Map::generate_map_cache()
+{
+    for (auto y = 0; y < get_height(); y++)
+    {
+        for (auto x = 0; x < get_width(); x++)
+        {
+            const Tile &tile = tile_map[y][x];
+            if (tile.special_flag < 0)
+                continue;
+
+            if (tile.special_flag == 0)
+            {
+                idx_home.x = x;
+                idx_home.y = y;
+            }
+            
+        }
+    }
 }
