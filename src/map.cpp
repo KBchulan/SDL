@@ -123,7 +123,10 @@ void Map::generate_map_cache()
                 idx_home.x = x;
                 idx_home.y = y;
             }
-            
+            else
+            {
+                spawner_route_pool[tile.special_flag] = Route(tile_map, {x, y});
+            }
         }
     }
 }
