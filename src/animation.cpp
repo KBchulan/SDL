@@ -4,7 +4,7 @@ Animation::Animation()
 {
     timer.set_one_shot(false);
     timer.set_on_timeout(
-        [&]
+        [&]()
         {
             idx_frame++;
             if (idx_frame >= rect_src_list.size())

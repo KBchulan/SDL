@@ -25,7 +25,7 @@ public:
 
     void on_update(double delta);
 
-    void on_render(SDL_Renderer *renderer, const SDL_Point &pos_dst, double angle);
+    void on_render(SDL_Renderer *renderer, const SDL_Point &pos_dst, double angle = 0);
 
 private:
     Timer timer;

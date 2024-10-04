@@ -1,6 +1,8 @@
 #ifndef VECTOR2_HPP
 #define VECTOR2_HPP
 
+#include <cmath>
+
 class Vector2
 {
 public:
@@ -26,7 +28,7 @@ public:
 
     Vector2 operator*(double val) const;
 
-    double operator*=(double);
+    void operator*=(double val);
 
     bool operator==(const Vector2 &vec) const;
 
@@ -35,6 +37,10 @@ public:
     bool operator<(const Vector2 &vec) const;
 
     double length() const;
+
+    Vector2 normalize() const;
+
+    bool approx_zero() const;
 };
 
 #endif // VECTOR2_HPP
