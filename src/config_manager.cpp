@@ -2,8 +2,9 @@
 
 bool ConfigManager::load_level_config(const std::string &path)
 {
-    std::fstream file(path, std::ios::in);
-    if (!file.is_open())
+    std::ifstream file(path);
+
+    if (!file.good())
         return false;
 
     std::stringstream str_stream;
@@ -23,7 +24,7 @@ bool ConfigManager::load_level_config(const std::string &path)
     cJSON *json_wave = nullptr;
     cJSON_ArrayForEach(json_wave, json_root)
     {
-        if (json_wave->type != cJSON_Array)
+        if (json_wave->type != cJSON_Object)
             continue;
 
         wave_list.emplace_back();
@@ -32,11 +33,9 @@ bool ConfigManager::load_level_config(const std::string &path)
         cJSON *json_wave_rewards = cJSON_GetObjectItem(json_wave, "rewards");
         if (json_wave_rewards && json_wave_rewards->type == cJSON_Number)
             wave.rewards = json_wave_rewards->valuedouble;
-
         cJSON *json_wave_interval = cJSON_GetObjectItem(json_wave, "interval");
         if (json_wave_interval && json_wave_interval->type == cJSON_Number)
             wave.interval = json_wave_interval->valuedouble;
-
         cJSON *json_wave_spawn_list = cJSON_GetObjectItem(json_wave, "spawn_list");
         if (json_wave_spawn_list && json_wave_spawn_list->type == cJSON_Array)
         {
@@ -52,11 +51,9 @@ bool ConfigManager::load_level_config(const std::string &path)
                 cJSON *json_spawn_event_interval = cJSON_GetObjectItem(json_spawn_event, "interval");
                 if (json_spawn_event_interval && json_spawn_event_interval->type == cJSON_Number)
                     spawn_event.interval = json_spawn_event_interval->valuedouble;
-
                 cJSON *json_spawn_event_spawn_point = cJSON_GetObjectItem(json_spawn_event, "point");
                 if (json_spawn_event_spawn_point && json_spawn_event_spawn_point->type == cJSON_Number)
                     spawn_event.spawn_point = json_spawn_event_spawn_point->valueint;
-
                 cJSON *json_spawn_event_enemy_type = cJSON_GetObjectItem(json_spawn_event, "enemy");
                 if (json_spawn_event_enemy_type && json_spawn_event_enemy_type->type == cJSON_String)
                 {
@@ -78,7 +75,9 @@ bool ConfigManager::load_level_config(const std::string &path)
                 wave_list.pop_back();
         }
     }
+
     cJSON_Delete(json_root);
+
     if (wave_list.empty())
         return false;
 
@@ -87,8 +86,8 @@ bool ConfigManager::load_level_config(const std::string &path)
 
 bool ConfigManager::load_game_config(const std::string &path)
 {
-    std::fstream file(path);
-    if (file.is_open())
+    std::ifstream file(path);
+    if (!file.good())
         return false;
 
     std::stringstream str_stream;
@@ -104,17 +103,14 @@ bool ConfigManager::load_game_config(const std::string &path)
     cJSON *json_tower = cJSON_GetObjectItem(json_root, "tower");
     cJSON *json_enemy = cJSON_GetObjectItem(json_root, "enemy");
 
-    if (!json_basic || !json_player || !json_tower || !json_enemy ||
-        json_basic->type != cJSON_Object ||
-        json_player->type != cJSON_Object ||
-        json_tower->type != cJSON_Object ||
-        json_enemy->type != cJSON_Object)
+    if (!json_basic || !json_player || !json_tower || !json_enemy || json_basic->type != cJSON_Object || json_player->type != cJSON_Object || json_tower->type != cJSON_Object || json_enemy->type != cJSON_Object)
     {
         cJSON_Delete(json_root);
         return false;
     }
 
     parse_basic_template(basic_template, json_basic);
+
     parse_player_template(player_template, json_player);
 
     parse_tower_template(archer_template, cJSON_GetObjectItem(json_tower, "archer"));

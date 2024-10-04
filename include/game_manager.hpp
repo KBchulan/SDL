@@ -3,6 +3,8 @@
 
 #include "config.hpp"
 #include "manager.hpp"
+#include "config_manager.hpp"
+#include "resources_manager.hpp"
 
 class GameManager : public Manager<GameManager>
 {
@@ -21,6 +23,8 @@ private:
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
 
+    SDL_Texture *tex_tile_map = nullptr;
+
 private:
     // 初始化断言
     void init_assert(bool flags, const char *error_msg);
@@ -33,6 +37,9 @@ private:
 
     // 渲染
     void on_renderer();
+
+    // 生成地图
+    bool generate_tile_map_texture();
 };
 
 #endif // GAME_MANAGER_HPP
