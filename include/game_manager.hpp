@@ -3,6 +3,8 @@
 
 #include "config.hpp"
 #include "manager.hpp"
+#include "wave_manager.hpp"
+#include "enemy_manager.hpp"
 #include "config_manager.hpp"
 #include "resources_manager.hpp"
 

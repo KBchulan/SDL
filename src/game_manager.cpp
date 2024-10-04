@@ -92,6 +92,11 @@ void GameManager::on_input()
 
 void GameManager::on_update(double delta)
 {
+    static ConfigManager *instance = ConfigManager::instance();
+    if (!instance->is_game_over){
+        WaveManager::instance()->on_update(delta);
+        EnemyManager::instance()->on_update(delta);
+    }
 }
 
 void GameManager::on_renderer()
@@ -99,6 +104,8 @@ void GameManager::on_renderer()
     static ConfigManager *instance = ConfigManager::instance();
     static SDL_Rect &rect_dst = instance->rect_tile_map;
     SDL_RenderCopy(renderer, tex_tile_map, nullptr, &rect_dst);
+
+    EnemyManager::instance()->on_render(renderer);
 }
 
 void GameManager::init_assert(bool flags, const char *error_msg)

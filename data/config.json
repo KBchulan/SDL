@@ -2,7 +2,7 @@
 	"basic":	{
 		"window_width":	1280,
 		"window_height":	720,
-		"window_title":	"村庄保卫战！"
+		"window_title":	"lowr_protect"
 	},
 	"player":	{
 		"speed":	5,
