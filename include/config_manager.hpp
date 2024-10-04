@@ -13,7 +13,7 @@ class ConfigManager : public Manager<ConfigManager>
 public:
     struct BasicTemplate
     {
-        std::string window_tile = u8"lowr protect";
+        std::string window_title = u8"lowr protect";
         int window_width = 1280;
         int window_height = 720;
     };
@@ -63,7 +63,7 @@ public:
 
     PlayerTemplate player_template;
 
-    TowerTemplate archor_template;
+    TowerTemplate archer_template;
     TowerTemplate axeman_template;
     TowerTemplate gunner_template;
 
@@ -78,15 +78,24 @@ public:
     const double num_coin_per_prop = 10;
 
 public:
-    bool load_level_config(const std::string& path);
+    bool load_level_config(const std::string &path);
 
-    bool load_game_config(const std::string& path);
-    
+    bool load_game_config(const std::string &path);
+
 protected:
     ConfigManager() = default;
     ~ConfigManager() = default;
 
 private:
+    void parse_basic_template(BasicTemplate &tpl, cJSON *json_root);
+
+    void parse_player_template(PlayerTemplate &tpl, cJSON *json_root);
+
+    void parse_number_array(double *ary, int max_len, cJSON *json_root);
+
+    void parse_tower_template(TowerTemplate &tpl, cJSON *json_root);
+
+    void parse_enemy_template(EnemyTemplate &tpl, cJSON *json_root);
 };
 
 #endif // CONFIG_MANAGER_HPP

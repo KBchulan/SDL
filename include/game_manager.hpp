@@ -17,8 +17,6 @@ protected:
     ~GameManager();
 
 private:
-
-private:
     SDL_Event event;
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
