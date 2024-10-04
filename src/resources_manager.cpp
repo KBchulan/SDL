@@ -89,7 +89,7 @@ bool ResourcesManager::load_from_file(SDL_Renderer *renderer)
         if (!pair.second)
             return false;
 
-    music_pool[ResID::Music_BGM] = Mix_LoadMUS("../resources/music_bgm.mp3");
+    music_pool[ResID::Music_BGM] = Mix_LoadMUS("../resources/Skyline.mp3");
 
     for (const auto &pair : music_pool)
         if (!pair.second)
