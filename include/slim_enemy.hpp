@@ -9,7 +9,7 @@ class SlimEnemy : public Enemy
 {
 public:
     SlimEnemy();
-    ~SlimEnemy();
+    ~SlimEnemy() = default;
 };
 
 #endif // SLIM_ENEMY_HPP

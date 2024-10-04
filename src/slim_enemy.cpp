@@ -49,5 +49,3 @@ SlimEnemy::SlimEnemy()
     size.x = 48, size.y = 48;
     hp = max_hp, speed = max_speed;
 }
-
-SlimEnemy::~SlimEnemy() = default;
