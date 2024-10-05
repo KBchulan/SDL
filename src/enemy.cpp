@@ -3,29 +3,18 @@
 Enemy::Enemy()
 {
     timer_skill.set_one_shot(false);
-    timer_skill.set_on_timeout(
-        [&]()
-        {
-            on_skill_released(this);
-        });
+    timer_skill.set_on_timeout([&]()
+                               { on_skill_released(this); });
 
     timer_sketch.set_one_shot(true);
     timer_sketch.set_wait_time(0.075);
-    timer_sketch.set_on_timeout(
-        [&]()
-        {
-            is_show_sketch = false;
-        });
+    timer_sketch.set_on_timeout([&]()
+                                { is_show_sketch = false; });
 
     timer_restore_speed.set_one_shot(true);
-    timer_restore_speed.set_on_timeout(
-        [&]()
-        {
-            speed = max_speed;
-        });
+    timer_restore_speed.set_on_timeout([&]()
+                                       { speed = max_speed; });
 }
-
-Enemy::~Enemy() = default;
 
 void Enemy::on_update(double delta)
 {
@@ -35,7 +24,7 @@ void Enemy::on_update(double delta)
 
     Vector2 move_distance = velocity * delta;
     Vector2 target_distance = position_target - position;
-    position += (move_distance < target_distance) ? move_distance : target_distance;
+    position += move_distance < target_distance ? move_distance : target_distance;
 
     if (target_distance.approx_zero())
     {
@@ -48,18 +37,18 @@ void Enemy::on_update(double delta)
     velocity.x = direction.x * speed * TILE_SIZE;
     velocity.y = direction.y * speed * TILE_SIZE;
 
-    bool is_show_x_anim = abs(velocity.x) >= abs(velocity.y);
+    bool is_show_x_amin = abs(velocity.x) >= abs(velocity.y);
 
     if (is_show_sketch)
     {
-        if (is_show_x_anim)
+        if (is_show_x_amin)
             anim_current = velocity.x > 0 ? &anim_right_sketch : &anim_left_sketch;
         else
             anim_current = velocity.y > 0 ? &anim_down_sketch : &anim_up_sketch;
     }
     else
     {
-        if (is_show_x_anim)
+        if (is_show_x_amin)
             anim_current = velocity.x > 0 ? &anim_right : &anim_left;
         else
             anim_current = velocity.y > 0 ? &anim_down : &anim_up;
@@ -195,19 +184,19 @@ bool Enemy::can_remove() const
 
 double Enemy::get_route_process() const
 {
-    if (route->get_idx_lists().size() == 1)
+    if (route->get_idx_list().size() == 1)
         return 1;
 
-    return (double)idx_target / (route->get_idx_lists().size() - 1);
+    return (double)idx_target / (route->get_idx_list().size() - 1);
 }
 
 void Enemy::refresh_position_target()
 {
-    const Route::IdxLists &idx_lists = route->get_idx_lists();
-    if (idx_target < idx_lists.size())
-    {
-        const SDL_Point &point = idx_lists[idx_target];
+    const Route::IdxList &idx_list = route->get_idx_list();
 
+    if (idx_target < idx_list.size())
+    {
+        const SDL_Point &point = idx_list[idx_target];
         static const SDL_Rect &rect_tile_map = ConfigManager::instance()->rect_tile_map;
 
         position_target.x = rect_tile_map.x + point.x * TILE_SIZE + TILE_SIZE / 2;

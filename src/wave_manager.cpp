@@ -14,7 +14,7 @@ void WaveManager::on_update(double delta)
 
     if (is_spawned_last_enemy && EnemyManager::instance()->check_cleared())
     {
-        CoinManager::instance()->increase_coin(instance->wave_list[idx_wave].rewards);
+        CoinManager::instance()->increase_coin(instance->wave_list[idx_wave].rawards);
 
         idx_wave++;
 
@@ -26,7 +26,7 @@ void WaveManager::on_update(double delta)
         else
         {
             idx_spawn_event = 0;
-            is_wave_started = false;
+            is_wave_started = true;
             is_spawned_last_enemy = false;
 
             const Wave &wave = instance->wave_list[idx_wave];
@@ -56,6 +56,7 @@ WaveManager::WaveManager()
         {
             const std::vector<Wave::SpawnEvent> &spawn_event_list = wave_list[idx_wave].spawn_event_list;
             const Wave::SpawnEvent &spawn_event = spawn_event_list[idx_spawn_event];
+
             EnemyManager::instance()->spawn_enemy(spawn_event.enemy_type, spawn_event.spawn_point);
 
             idx_spawn_event++;
@@ -70,5 +71,3 @@ WaveManager::WaveManager()
             timer_spawn_enemy.restart();
         });
 }
-
-WaveManager::~WaveManager() = default;

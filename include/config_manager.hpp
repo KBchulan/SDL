@@ -20,7 +20,7 @@ public:
 
     struct PlayerTemplate
     {
-        double speed = 3.0;
+        double speed = 3;
         double normal_attack_interval = 0.5;
         double normal_attack_damage = 0;
         double skill_interval = 10;
@@ -51,11 +51,11 @@ public:
     Map map;
     std::vector<Wave> wave_list;
 
-    int level_archor = 0;
+    int level_archer = 0;
     int level_axeman = 0;
     int level_gunner = 0;
 
-    bool is_game_win = false;
+    bool is_game_win = true;
     bool is_game_over = false;
     SDL_Rect rect_tile_map = {0};
 

@@ -1,9 +1,11 @@
 #ifndef GAME_MANAGER_HPP
 #define GANE_MANAGER_HPP
 
+#include "banner.hpp"
 #include "config.hpp"
 #include "manager.hpp"
 #include "wave_manager.hpp"
+#include "tower_manager.hpp"
 #include "enemy_manager.hpp"
 #include "config_manager.hpp"
 #include "resources_manager.hpp"

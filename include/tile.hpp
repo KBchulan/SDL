@@ -17,18 +17,17 @@ struct Tile
     {
         NONE = 0,
         UP,
-        DOWM,
+        DOWN,
         LEFT,
         RIGHT
     };
 
+    int terrian = 0;        // 地形层
+    int decoration = -1;    // 装饰
+    int special_flag = -1;  // 特殊标志
+    bool has_tower = false; // 是否有防御塔
     Direction direction = Direction::NONE;
 
-    int terrian = 0;            // 地形层
-    int decoration = -1;        // 装饰
-    int special_flag = -1;      // 特殊标志
-    bool has_tower = false;     // 是否有防御塔
-    
 };
 
 typedef std::vector<std::vector<Tile>> TileMap;

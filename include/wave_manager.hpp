@@ -15,15 +15,15 @@ public:
 
 protected:
     WaveManager();
-    ~WaveManager();
-    
+    ~WaveManager() = default;
+
 private:
     int idx_wave = 0;
     int idx_spawn_event = 0;
     Timer timer_start_wave;
     Timer timer_spawn_enemy;
     bool is_wave_started = false;
-	bool is_spawned_last_enemy = false;
+    bool is_spawned_last_enemy = false;
 };
 
 #endif // WAVE_MANAGER_HPP

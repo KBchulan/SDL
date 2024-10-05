@@ -11,8 +11,8 @@ public:
     typedef std::unordered_map<int, Route> SpawnerRoutePool;
 
 public:
-    Map();
-    ~Map();
+    Map() = default;
+    ~Map() = default;
 
     // 从.csv中加载瓦片信息
     bool load(const std::string &path);

@@ -1,8 +1,5 @@
 #include "../include/route.hpp"
 
-Route::Route() = default;
-Route::~Route() = default;
-
 Route::Route(const TileMap &map, const SDL_Point &idx_origin)
 {
     size_t width_map = map[0].size();
@@ -17,27 +14,26 @@ Route::Route(const TileMap &map, const SDL_Point &idx_origin)
         if (check_duplicate_idx(idx_next))
             break;
         else
-            idx_lists.push_back(idx_next);
+            idx_list.push_back(idx_next);
 
         bool is_next_dir_exist = true;
         const Tile &tile = map[idx_next.y][idx_next.x];
 
         if (tile.special_flag == 0)
             break;
-
         switch (tile.direction)
         {
         case Tile::Direction::UP:
             idx_next.y--;
+            break;
+        case Tile::Direction::DOWN:
+            idx_next.y++;
             break;
         case Tile::Direction::LEFT:
             idx_next.x--;
             break;
         case Tile::Direction::RIGHT:
             idx_next.x++;
-            break;
-        case Tile::Direction::DOWM:
-            idx_next.y++;
             break;
         default:
             is_next_dir_exist = false;
@@ -51,12 +47,12 @@ Route::Route(const TileMap &map, const SDL_Point &idx_origin)
 
 const Route::IdxLists &Route::get_idx_lists() const
 {
-    return idx_lists;
+    return idx_list;
 }
 
 bool Route::check_duplicate_idx(const SDL_Point &target_idx)
 {
-    for (const auto &idx : idx_lists)
+    for (const auto &idx : idx_list)
     {
         if (idx.x == target_idx.x && idx.y == target_idx.y)
             return true;

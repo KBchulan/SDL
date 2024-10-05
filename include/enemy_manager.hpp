@@ -2,10 +2,12 @@
 #define ENEMY_MANAGER_HPP
 
 #include "enemy.hpp"
-#include "config.hpp"
 #include "slim_enemy.hpp"
+#include "coin_manager.hpp"
 #include "goblin_enemy.hpp"
 #include "home_manager.hpp"
+#include "bullet_manager.hpp"
+#include "config_manager.hpp"
 #include "skeleton_enemy.hpp"
 #include "king_slim_enemy.hpp"
 #include "goblin_priest_enemy.hpp"
@@ -22,14 +24,14 @@ public:
 
     void on_render(SDL_Renderer *renderer);
 
-    void spawn_enemy(EnemyType type,int idx_spawn_point);
+    void spawn_enemy(EnemyType type, int idx_spawn_point);
 
     bool check_cleared();
 
-    EnemyManager::EnemyList& get_enemy_list();
+    EnemyManager::EnemyList &get_enemy_list();
 
 protected:
-    EnemyManager();
+    EnemyManager() = default;
     ~EnemyManager();
 
 private:
@@ -40,6 +42,8 @@ private:
     void process_bullet_collision();
 
     void remove_invalid_enemy();
+
+    void try_spawn_coin_prop(const Vector2 &position, double ratio);
 };
 
 #endif // ENEMY_MANAGER_HPP

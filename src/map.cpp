@@ -1,8 +1,5 @@
 #include "../include/map.hpp"
 
-Map::Map() = default;
-Map::~Map() = default;
-
 bool Map::load(const std::string &path)
 {
     std::fstream file(path, std::ios::in);

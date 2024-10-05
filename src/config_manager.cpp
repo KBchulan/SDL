@@ -32,7 +32,7 @@ bool ConfigManager::load_level_config(const std::string &path)
 
         cJSON *json_wave_rewards = cJSON_GetObjectItem(json_wave, "rewards");
         if (json_wave_rewards && json_wave_rewards->type == cJSON_Number)
-            wave.rewards = json_wave_rewards->valuedouble;
+            wave.rawards = json_wave_rewards->valuedouble;
         cJSON *json_wave_interval = cJSON_GetObjectItem(json_wave, "interval");
         if (json_wave_interval && json_wave_interval->type == cJSON_Number)
             wave.interval = json_wave_interval->valuedouble;

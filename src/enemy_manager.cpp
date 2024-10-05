@@ -1,7 +1,5 @@
 #include "../include/enemy_manager.hpp"
 
-EnemyManager::EnemyManager() = default;
-
 EnemyManager::~EnemyManager()
 {
     for (auto enemy : enemy_list)
@@ -12,23 +10,19 @@ EnemyManager::~EnemyManager()
 
 void EnemyManager::on_update(double delta)
 {
-    for (auto enemy : enemy_list)
-    {
+    for (Enemy *enemy : enemy_list)
         enemy->on_update(delta);
-    }
 
-    process_bullet_collision();
     process_home_collision();
+    process_bullet_collision();
 
     remove_invalid_enemy();
 }
 
 void EnemyManager::on_render(SDL_Renderer *renderer)
 {
-    for (auto enemy : enemy_list)
-    {
+    for (Enemy *enemy : enemy_list)
         enemy->on_render(renderer);
-    }
 }
 
 void EnemyManager::spawn_enemy(EnemyType type, int idx_spawn_point)
@@ -66,14 +60,14 @@ void EnemyManager::spawn_enemy(EnemyType type, int idx_spawn_point)
     }
 
     enemy->set_on_skill_released(
-        [&](auto enemy_src)
+        [&](Enemy *enemy_src)
         {
             double recover_raduis = enemy_src->get_recover_radius();
             if (recover_raduis < 0)
                 return;
 
             const Vector2 pos_src = enemy_src->get_position();
-            for (auto enemy_dst : enemy_list)
+            for (Enemy *enemy_dst : enemy_list)
             {
                 const Vector2 &pos_dst = enemy_dst->get_position();
                 double distance = (pos_dst - pos_src).length();
@@ -82,7 +76,7 @@ void EnemyManager::spawn_enemy(EnemyType type, int idx_spawn_point)
             }
         });
 
-    const Route::IdxLists &idx_list = itor->second.get_idx_lists();
+    const Route::IdxList &idx_list = itor->second.get_idx_list();
     position.x = rect_tile_map.x + idx_list[0].x * TILE_SIZE + TILE_SIZE / 2;
     position.y = rect_tile_map.y + idx_list[0].y * TILE_SIZE + TILE_SIZE / 2;
 
@@ -90,10 +84,6 @@ void EnemyManager::spawn_enemy(EnemyType type, int idx_spawn_point)
     enemy->set_route(&itor->second);
 
     enemy_list.push_back(enemy);
-    if (enemy_list.empty())
-    {
-        std::cout << "1211" << std::endl;
-    }
 }
 
 bool EnemyManager::check_cleared()
@@ -101,8 +91,9 @@ bool EnemyManager::check_cleared()
     return enemy_list.empty();
 }
 
-void EnemyManager::process_bullet_collision()
+EnemyManager::EnemyList &EnemyManager::get_enemy_list()
 {
+    return enemy_list;
 }
 
 void EnemyManager::process_home_collision()
@@ -130,16 +121,72 @@ void EnemyManager::process_home_collision()
     }
 }
 
+void EnemyManager::process_bullet_collision()
+{
+    static BulletManager::BulletList &bullet_list = BulletManager::instance()->get_bullet_list();
+
+    for (Enemy *enemy : enemy_list)
+    {
+        if (enemy->can_remove())
+            continue;
+
+        const Vector2 &size_enemy = enemy->get_size();
+        const Vector2 &pos_enemy = enemy->get_position();
+
+        for (Bullet *bullet : bullet_list)
+        {
+            if (!bullet->can_collide())
+                continue;
+
+            const Vector2 &pos_bullet = bullet->get_position();
+
+            if (pos_bullet.x >= pos_enemy.x - size_enemy.x / 2 && pos_bullet.y >= pos_enemy.y - size_enemy.y / 2 && pos_bullet.x <= pos_enemy.x + size_enemy.x / 2 && pos_bullet.y <= pos_enemy.y + size_enemy.y / 2)
+            {
+                double damage = bullet->get_damage();
+                double damage_range = bullet->get_damage_range();
+                if (damage_range < 0)
+                {
+                    enemy->decrease_hp(damage);
+                    if (enemy->can_remove())
+                        try_spawn_coin_prop(pos_enemy, enemy->get_reward_ratio());
+                }
+                else
+                {
+                    for (Enemy *target_enemy : enemy_list)
+                    {
+                        const Vector2 &pos_target_enemy = target_enemy->get_position();
+                        if ((pos_target_enemy - pos_bullet).length() <= damage_range)
+                        {
+                            target_enemy->decrease_hp(damage);
+                            if (target_enemy->can_remove())
+                                try_spawn_coin_prop(pos_target_enemy, enemy->get_reward_ratio());
+                        }
+                    }
+                }
+
+                bullet->on_collide(enemy);
+            }
+        }
+    }
+}
+
 void EnemyManager::remove_invalid_enemy()
 {
-    enemy_list.erase(std::remove_if(
-                         enemy_list.begin(), enemy_list.end(),
-                         [](const Enemy *enemy)
-                         {
-                             bool deletable = enemy->can_remove();
-                             if (deletable)
-                                 delete enemy;
-                             return deletable;
-                         }),
+    enemy_list.erase(std::remove_if(enemy_list.begin(), enemy_list.end(),
+                                    [](const Enemy *enemy)
+                                    {
+                                        bool deletable = enemy->can_remove();
+                                        if (deletable)
+                                            delete enemy;
+                                        return deletable;
+                                    }),
                      enemy_list.end());
+}
+
+void try_spawn_coin_prop(const Vector2 &position, double ratio)
+{
+    static CoinManager *instance = CoinManager::instance();
+
+    if ((double)(rand() % 100) / 100 <= ratio)
+        instance->spawn_coin_prop(position);
 }
