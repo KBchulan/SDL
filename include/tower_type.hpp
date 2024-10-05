@@ -1,5 +1,5 @@
-#ifndef TOWER_TYPE_HPP
-#define TOWER_TYPE_HPP
+#ifndef _TOWER_TYPE_H_
+#define _TOWER_TYPE_H_
 
 enum TowerType
 {
@@ -8,4 +8,4 @@ enum TowerType
 	Gunner
 };
 
-#endif // !TOWER_TYPE_HPP
+#endif // !_TOWER_TYPE_H_

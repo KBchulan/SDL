@@ -23,7 +23,7 @@ void BulletManager::on_render(SDL_Renderer *renderer)
         bullet->on_render(renderer);
 }
 
-BulletList &BulletManager::get_bullet_list()
+BulletManager::BulletList &BulletManager::get_bullet_list()
 {
     return bullet_list;
 }

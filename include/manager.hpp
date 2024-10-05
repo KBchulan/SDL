@@ -1,28 +1,30 @@
-#ifndef MANAGER_HPP
-#define MANAGER_HPP
+#ifndef _MANAGER_H_
+#define _MANAGER_H_
 
 template <typename T>
 class Manager
 {
 public:
-    static T *instance()
-    {
-        if (!manager)
-            manager = new T();
-        return manager;
-    }
+	static T* instance()
+	{
+		if (!manager)
+			manager = new T();
+
+		return manager;
+	}
 
 private:
-    static T *manager;
+	static T* manager;
 
 protected:
-    Manager() = default;
-    ~Manager() = default;
-    Manager(const Manager &) = delete;
-    Manager &operator=(const Manager &) = delete;
+	Manager() = default;
+	~Manager() = default;
+	Manager(const Manager&) = delete;
+	Manager& operator=(const Manager&) = delete;
+
 };
 
 template <typename T>
-T *Manager<T>::manager = nullptr;
+T* Manager<T>::manager = nullptr;
 
-#endif // MANAGER_HPP
+#endif // !_MANAGER_H_

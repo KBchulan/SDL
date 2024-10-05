@@ -1,12 +1,12 @@
-#ifndef FACING_HPP
-#define FACING_HPP
+#ifndef _FACING_H_
+#define _FACING_H_
 
 enum Facing
 {
-    Left,
-    Right,
-    Up,
-    Down
+	Left,
+	Right,
+	Up,
+	Down
 };
 
-#endif // !FACING_HPP
+#endif // !_FACING_H_

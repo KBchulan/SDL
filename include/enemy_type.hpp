@@ -1,13 +1,13 @@
-#ifndef ENEMY_TYPE_HPP
-#define ENEMY_TYPE_HPP
+#ifndef _ENEMY_TYPE_H_
+#define _ENEMY_TYPE_H_
 
 enum class EnemyType
 {
-    Slim,
-    KingSlim,
-    Skeleton,
-    Goblin,
-    GoblinPriest
+	Slim,
+	KingSlim,
+	Skeleton,
+	Goblin,
+	GoblinPriest
 };
 
-#endif // ENEMY_TYPE_HPP
+#endif // !_ENEMY_TYPE_H_

@@ -1,5 +1,5 @@
-#ifndef WAVE_HPP
-#define WAVE_HPP
+#ifndef _WAVE_H_
+#define _WAVE_H_
 
 #include "enemy_type.hpp"
 
@@ -19,4 +19,4 @@ struct Wave
 	std::vector<SpawnEvent> spawn_event_list;
 };
 
-#endif // WAVE_HPP
+#endif // !_WAVE_H_

@@ -51,7 +51,7 @@ double CoinManager::get_current_coin_num()
     return num_coin;
 }
 
-CoinPropList &CoinManager::get_coin_prop_list()
+CoinManager::CoinPropList &CoinManager::get_coin_prop_list()
 {
     return coin_prop_list;
 }
