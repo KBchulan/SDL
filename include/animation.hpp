@@ -15,7 +15,7 @@ public:
 
     void reset();
 
-    void set_frame_data(SDL_Texture *texture, int num_h, int num_v, const std::vector<int> idx_list);
+    void set_frame_data(SDL_Texture *texture, int num_h, int num_v, const std::vector<int> &idx_list);
 
     void set_loop(bool is_loop);
 
@@ -25,7 +25,7 @@ public:
 
     void on_update(double delta);
 
-    void on_render(SDL_Renderer *renderer, const SDL_Point &pos_dst, double angle = 0);
+    void on_render(SDL_Renderer *renderer, const SDL_Point &pos_dst, double angle = 0) const;
 
 private:
     Timer timer;

@@ -11,12 +11,12 @@ void Timer::restart()
 
 void Timer::set_wait_time(double val)
 {
-    this->wait_time = val;
+    wait_time = val;
 }
 
 void Timer::set_one_shot(bool flag)
 {
-    this->one_shot = flag;
+    one_shot = flag;
 }
 
 void Timer::set_on_timeout(std::function<void()> on_timeout)

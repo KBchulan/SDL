@@ -11,9 +11,7 @@ Animation::Animation()
             {
                 idx_frame = is_loop ? 0 : rect_src_list.size() - 1;
                 if (!is_loop && on_finished)
-                {
                     on_finished();
-                }
             }
         });
 }
@@ -26,7 +24,7 @@ void Animation::reset()
     idx_frame = 0;
 }
 
-void Animation::set_frame_data(SDL_Texture *texture, int num_h, int num_v, const std::vector<int> idx_list)
+void Animation::set_frame_data(SDL_Texture *texture, int num_h, int num_v, const std::vector<int> &idx_list)
 {
     int width_tex,
         height_tex;
@@ -56,7 +54,7 @@ void Animation::set_loop(bool is_loop)
 
 void Animation::set_interval(double interval)
 {
-    this->timer.set_wait_time(interval);
+    timer.set_wait_time(interval);
 }
 
 void Animation::set_on_finished(Animation::PlayCallback on_finished)
@@ -69,7 +67,7 @@ void Animation::on_update(double delta)
     timer.on_update(delta);
 }
 
-void Animation::on_render(SDL_Renderer *renderer, const SDL_Point &pos_dst, double angle)
+void Animation::on_render(SDL_Renderer *renderer, const SDL_Point &pos_dst, double angle) const
 {
     static SDL_Rect rect_dst;
 
@@ -78,5 +76,5 @@ void Animation::on_render(SDL_Renderer *renderer, const SDL_Point &pos_dst, doub
     rect_dst.w = width_frame;
     rect_dst.h = height_frame;
 
-    SDL_RenderCopyEx(renderer, texture, &rect_src_list[idx_frame], &rect_dst, 0, nullptr, SDL_RendererFlip::SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer, texture, &rect_src_list[idx_frame], &rect_dst, angle, nullptr, SDL_RendererFlip::SDL_FLIP_NONE);
 }

@@ -26,6 +26,8 @@ public:
 
     bool check_cleared();
 
+    EnemyManager::EnemyList& get_enemy_list();
+
 protected:
     EnemyManager();
     ~EnemyManager();

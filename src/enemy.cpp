@@ -35,7 +35,7 @@ void Enemy::on_update(double delta)
 
     Vector2 move_distance = velocity * delta;
     Vector2 target_distance = position_target - position;
-    position += move_distance < target_distance ? move_distance : target_distance;
+    position += (move_distance < target_distance) ? move_distance : target_distance;
 
     if (target_distance.approx_zero())
     {
@@ -49,6 +49,7 @@ void Enemy::on_update(double delta)
     velocity.y = direction.y * speed * TILE_SIZE;
 
     bool is_show_x_anim = abs(velocity.x) >= abs(velocity.y);
+
     if (is_show_sketch)
     {
         if (is_show_x_anim)
@@ -79,7 +80,7 @@ void Enemy::on_render(SDL_Renderer *renderer)
     point.x = (int)(position.x - size.x / 2);
     point.y = (int)(position.y - size.y / 2);
 
-    anim_current->on_render(renderer, point, 0);
+    anim_current->on_render(renderer, point);
 
     if (hp < max_hp)
     {

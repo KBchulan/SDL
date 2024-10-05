@@ -55,7 +55,7 @@ public:
     int level_axeman = 0;
     int level_gunner = 0;
 
-    bool is_game_win = true;
+    bool is_game_win = false;
     bool is_game_over = false;
     SDL_Rect rect_tile_map = {0};
 

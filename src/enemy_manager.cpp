@@ -5,13 +5,17 @@ EnemyManager::EnemyManager() = default;
 EnemyManager::~EnemyManager()
 {
     for (auto enemy : enemy_list)
+    {
         delete enemy;
+    }
 }
 
 void EnemyManager::on_update(double delta)
 {
     for (auto enemy : enemy_list)
+    {
         enemy->on_update(delta);
+    }
 
     process_bullet_collision();
     process_home_collision();
@@ -86,6 +90,10 @@ void EnemyManager::spawn_enemy(EnemyType type, int idx_spawn_point)
     enemy->set_route(&itor->second);
 
     enemy_list.push_back(enemy);
+    if (enemy_list.empty())
+    {
+        std::cout << "1211" << std::endl;
+    }
 }
 
 bool EnemyManager::check_cleared()

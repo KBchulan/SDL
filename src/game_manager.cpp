@@ -93,10 +93,10 @@ void GameManager::on_input()
 void GameManager::on_update(double delta)
 {
     static ConfigManager *instance = ConfigManager::instance();
-    if (!instance->is_game_over){
+    // if (!instance->is_game_over){
         WaveManager::instance()->on_update(delta);
         EnemyManager::instance()->on_update(delta);
-    }
+    // }
 }
 
 void GameManager::on_renderer()
