@@ -24,4 +24,4 @@
   
   命名空间：https://www.bilibili.com/video/BV1Va411T7TJ/?p=2&spm_id_from=pageDriver&vd_source=621e8394e4f064afa62902c0650ccad8
   
-  https://www.bilibili.com/video/BV18B4y187uL/?spm_id_from=333.999.0.0&vd_source=621e8394e4f064afa62902c0650ccad8
+  智能指针：https://www.bilibili.com/video/BV18B4y187uL/?spm_id_from=333.999.0.0&vd_source=621e8394e4f064afa62902c0650ccad8
