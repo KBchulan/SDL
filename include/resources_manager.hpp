@@ -1,12 +1,12 @@
-#ifndef _RESOURCES_MANAGER_H_
-#define _RESOURCES_MANAGER_H_
+#ifndef RESOURCES_MANAGER_HPP
+#define RESOURCES_MANAGER_HPP
 
 #include "manager.hpp"
 
+#include <unordered_map>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
-#include <unordered_map>
 
 enum class ResID
 {
@@ -232,4 +232,4 @@ private:
 	TexturePool texture_pool;
 };
 
-#endif // !_RESOURCES_MANAGER_H_
+#endif // !RESOURCES_MANAGER_HPP

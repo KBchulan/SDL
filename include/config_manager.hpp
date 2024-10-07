@@ -1,16 +1,16 @@
-#ifndef _CONFIG_MANAGER_H_
-#define _CONFIG_MANAGER_H_
+#ifndef CONFIG_MANAGER_HPP
+#define CONFIG_MANAGER_HPP
 
 #include "map.hpp"
 #include "wave.hpp"
 #include "manager.hpp"
 
-#include <SDL2/SDL.h>
 #include <string>
-#include <cjson/cJSON.h>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <SDL2/SDL.h>
+#include <cjson/cJSON.h>
 
 class ConfigManager : public Manager<ConfigManager>
 {
@@ -317,4 +317,4 @@ private:
 };
 
 
-#endif // !_CONFIG_MANAGER_H_
+#endif // !CONFIG_MANAGER_HPP

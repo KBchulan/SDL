@@ -1,5 +1,5 @@
-#ifndef _GUNNER_TOWER_H_
-#define _GUNNER_TOWER_H_
+#ifndef GUNNER_TOWER_HPP
+#define GUNNER_TOWER_HPP
 
 #include "tower.hpp"
 #include "resources_manager.hpp"
@@ -43,4 +43,4 @@ public:
 };
 
 
-#endif // !_GUNNER_TOWER_H_
+#endif // !GUNNER_TOWER_HPP

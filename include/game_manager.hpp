@@ -1,19 +1,21 @@
-#ifndef _GAME_MANAGER_H_
-#define _GAME_MANAGER_H_
+#ifndef GAME_MANAGER_HPP
+#define GAME_MANAGER_HPP
 
+#include "panel.hpp"
 #include "banner.hpp"
 #include "manager.hpp"
-#include "config_manager.hpp"
-#include "enemy_manager.hpp"
+#include "status_bar.hpp"
+#include "place_panel.hpp"
 #include "wave_manager.hpp"
-#include "resources_manager.hpp"
+#include "upgrade_panel.hpp"
+#include "enemy_manager.hpp"
 #include "tower_manager.hpp"
 #include "bullet_manager.hpp"
-#include "status_bar.hpp"
-#include "panel.hpp"
-#include "place_panel.hpp"
-#include "upgrade_panel.hpp"
 #include "player_manager.hpp"
+#include "config_manager.hpp"
+#include "resources_manager.hpp"
+
+
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -343,4 +345,4 @@ private:
 	}
 };
 
-#endif // !_GAME_MANAGER_H_
+#endif // !GAME_MANAGER_HPP

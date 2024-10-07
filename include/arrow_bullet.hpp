@@ -1,5 +1,5 @@
-#ifndef _ARROW_BULLET_H_
-#define _ARROW_BULLET_H_
+#ifndef ARROW_BULLET_HPP
+#define ARROW_BULLET_HPP
 
 #include "bullet.hpp"
 #include "resources_manager.hpp"
@@ -48,4 +48,4 @@ public:
 };
 
 
-#endif // !_ARROW_BULLET_H_
+#endif // !ARROW_BULLET_HPP

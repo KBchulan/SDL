@@ -1,5 +1,5 @@
-#ifndef _PLAYER_MANAGER_H_
-#define _PLAYER_MANAGER_H_
+#ifndef PLAYER_MANAGER_HPP
+#define PLAYER_MANAGER_HPP
 
 #include "tile.hpp"
 #include "facing.hpp"
@@ -446,4 +446,4 @@ private:
 
 };
 
-#endif // !_PLAYER_MANAGER_H_
+#endif // !PLAYER_MANAGER_HPP

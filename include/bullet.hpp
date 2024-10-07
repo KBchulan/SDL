@@ -1,8 +1,8 @@
-#ifndef _BULLET_H_
-#define _BULLET_H_
+#ifndef BULLET_HPP
+#define BULLET_HPP
 
-#include "vector2.hpp"
 #include "enemy.hpp"
+#include "vector2.hpp"
 #include "animation.hpp"
 #include "config_manager.hpp"
 
@@ -125,4 +125,4 @@ private:
 
 };
 
-#endif // !_BULLET_H_
+#endif // !BULLET_HPP

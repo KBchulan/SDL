@@ -1,13 +1,13 @@
-#ifndef _MAP_H_
-#define _MAP_H_
+#ifndef MAP_HPP
+#define MAP_HPP
 
 #include "tile.hpp"
 #include "route.hpp"
 
-#include <SDL2/SDL.h>
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <SDL2/SDL.h>
 #include <unordered_map>
 
 class Map
@@ -165,4 +165,4 @@ private:
 };
 
 
-#endif // !_MAP_H_
+#endif // !MAP_HPP

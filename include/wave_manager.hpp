@@ -3,9 +3,9 @@
 
 #include "timer.hpp"
 #include "manager.hpp"
-#include "config_manager.hpp"
-#include "enemy_manager.hpp"
 #include "coin_manager.hpp"
+#include "enemy_manager.hpp"
+#include "config_manager.hpp"
 
 class WaveManager : public Manager<WaveManager>
 {
@@ -100,4 +100,4 @@ private:
 
 };
 
-#endif // !_WAVE_MANAGER_H_
+#endif // !WAVE_MANAGER_HPP

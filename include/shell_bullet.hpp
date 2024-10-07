@@ -1,5 +1,5 @@
-#ifndef _SHELL_BULLET_H_
-#define _SHELL_BULLET_H_
+#ifndef SHELL_BULLET_HPP
+#define SHELL_BULLET_HPP
 
 #include "bullet.hpp"
 #include "resources_manager.hpp"
@@ -79,4 +79,4 @@ private:
 };
 
 
-#endif // !_SHELL_BULLET_H_
+#endif // !SHELL_BULLET_HPP

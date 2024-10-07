@@ -1,17 +1,19 @@
-#ifndef _ENEMY_MANAGER_H_
-#define _ENEMY_MANAGER_H_
+#ifndef ENEMY_MANAGER_HPP
+#define ENEMY_MANAGER_HPP
 
 #include "enemy.hpp"
 #include "manager.hpp"
-#include "config_manager.hpp"
-#include "home_manager.hpp"
 #include "slim_enemy.hpp"
-#include "king_slim_enemy.hpp"
-#include "skeleton_enemy.hpp"
 #include "goblin_enemy.hpp"
-#include "goblin_priest_enemy.hpp"
-#include "bullet_manager.hpp"
+#include "home_manager.hpp"
 #include "coin_manager.hpp"
+#include "skeleton_enemy.hpp"
+#include "bullet_manager.hpp"
+#include "config_manager.hpp"
+#include "king_slim_enemy.hpp"
+#include "goblin_priest_enemy.hpp"
+
+
 
 #include <vector>
 #include <SDL2/SDL.h>
@@ -225,4 +227,4 @@ private:
 
 };
 
-#endif // !_ENEMY_MANAGER_H_
+#endif // !ENEMY_MANAGER_HPP

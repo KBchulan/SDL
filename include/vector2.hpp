@@ -1,5 +1,5 @@
-#ifndef _VECTOR2_H_
-#define _VECTOR2_H_
+#ifndef VECTOR2_HPP
+#define VECTOR2_HPP
 
 #include <cmath>
 
@@ -89,4 +89,4 @@ public:
 };
 
 
-#endif // !_VECTOR2_H_
+#endif // !VECTOR2_HPP

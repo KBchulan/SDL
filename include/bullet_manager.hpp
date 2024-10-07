@@ -1,12 +1,12 @@
-#ifndef _BULLET_MANAGER_H_
-#define _BULLET_MANAGER_H_
+#ifndef BULLET_MANAGER_HPP
+#define BULLET_MANAGER_HPP
 
 #include "bullet.hpp"
 #include "manager.hpp"
-#include "arrow_bullet.hpp"
 #include "axe_bullet.hpp"
-#include "shell_bullet.hpp"
 #include "bullet_type.hpp"
+#include "arrow_bullet.hpp"
+#include "shell_bullet.hpp"
 
 #include <vector>
 
@@ -85,4 +85,4 @@ private:
 
 };
 
-#endif // !_BULLET_MANAGER_H_
+#endif // !BULLET_MANAGER_HPP

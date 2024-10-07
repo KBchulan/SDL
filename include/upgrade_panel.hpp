@@ -1,5 +1,5 @@
-#ifndef _UPGRADE_PANEL_H_
-#define _UPGRADE_PANEL_H_
+#ifndef UPGRADE_PANEL_HPP
+#define UPGRADE_PANEL_HPP
 
 #include "panel.hpp"
 #include "tower_manager.hpp"
@@ -69,4 +69,4 @@ protected:
 };
 
 
-#endif // !_UPGRADE_PANEL_H_
+#endif // !UPGRADE_PANEL_HPP

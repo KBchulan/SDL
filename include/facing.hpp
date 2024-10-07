@@ -1,5 +1,5 @@
-#ifndef _FACING_H_
-#define _FACING_H_
+#ifndef FACING_HPP
+#define FACING_HPP
 
 enum Facing
 {
@@ -9,4 +9,4 @@ enum Facing
 	Down
 };
 
-#endif // !_FACING_H_
+#endif // !FACING_HPP

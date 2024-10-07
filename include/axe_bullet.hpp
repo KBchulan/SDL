@@ -1,5 +1,5 @@
-#ifndef _AXE_BULLET_H_
-#define _AXE_BULLET_H_
+#ifndef AXE_BULLET_HPP
+#define AXE_BULLET_HPP
 
 #include "bullet.hpp"
 #include "resources_manager.hpp"
@@ -49,4 +49,4 @@ public:
 };
 
 
-#endif // !_AXE_BULLET_H_
+#endif // !AXE_BULLET_HPP

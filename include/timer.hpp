@@ -1,5 +1,5 @@
-#ifndef _TIMER_H_
-#define _TIMER_H_
+#ifndef TIMER_HPP
+#define TIMER_HPP
 
 #include <functional>
 
@@ -66,4 +66,4 @@ private:
 
 };
 
-#endif // !_TIMER_H_
+#endif // !TIMER_HPP

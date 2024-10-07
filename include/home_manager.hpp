@@ -1,5 +1,5 @@
-#ifndef _HOME_MANAGER_H_
-#define _HOME_MANAGER_H_
+#ifndef HOME_MANAGER_HPP
+#define HOME_MANAGER_HPP
 
 #include "manager.hpp"
 #include "config_manager.hpp"
@@ -41,4 +41,4 @@ private:
 };
 
 
-#endif // !_HOME_MANAGER_H_
+#endif // !HOME_MANAGER_HPP

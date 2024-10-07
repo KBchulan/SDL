@@ -1,5 +1,5 @@
-#ifndef _PLACE_PANEL_H_
-#define _PLACE_PANEL_H_
+#ifndef PLACE_PANEL_HPP
+#define PLACE_PANEL_HPP
 
 #include "panel.hpp"
 #include "coin_manager.hpp"
@@ -111,4 +111,4 @@ private:
 
 };
 
-#endif // !_PLACE_PANEL_H_
+#endif // !PLACE_PANEL_HPP

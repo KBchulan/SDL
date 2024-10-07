@@ -1,8 +1,8 @@
 #ifndef _COIN_MANAGER_H_
 #define _COIN_MANAGER_H_
 
-#include "coin_prop.hpp"
 #include "manager.hpp"
+#include "coin_prop.hpp"
 #include "config_manager.hpp"
 
 #include <vector>

@@ -1,5 +1,5 @@
-#ifndef _KINNG_SLIM_ENEMY_H_
-#define _KINNG_SLIM_ENEMY_H_
+#ifndef KINNG_SLIM_ENEMY_HPP
+#define KINNG_SLIM_ENEMY_HPP
 
 #include "enemy.hpp"
 #include "config_manager.hpp"
@@ -55,5 +55,4 @@ public:
 
 };
 
-
-#endif // !_KINNG_SLIM_ENEMY_H_
+#endif // !KINNG_SLIM_ENEMY_HPP

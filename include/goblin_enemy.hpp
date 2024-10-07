@@ -1,5 +1,5 @@
-#ifndef _GOBLIN_ENEMY_H_
-#define _GOBLIN_ENEMY_H_
+#ifndef GOBLIN_ENEMY_HPP
+#define GOBLIN_ENEMY_HPP
 
 #include "enemy.hpp"
 #include "config_manager.hpp"
@@ -55,4 +55,4 @@ public:
 
 };
 
-#endif // !_GOBLIN_ENEMY_H_
+#endif // !GOBLIN_ENEMY_HPP

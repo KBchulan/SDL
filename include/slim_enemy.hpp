@@ -1,5 +1,5 @@
-#ifndef _SLIM_ENEMY_H_
-#define _SLIM_ENEMY_H_
+#ifndef SLIM_ENEMY_HPP
+#define SLIM_ENEMY_HPP
 
 #include "enemy.hpp"
 #include "config_manager.hpp"
@@ -55,4 +55,4 @@ public:
 
 };
 
-#endif // !_SLIM_ENEMY_H_
+#endif // !SLIM_ENEMY_HPP

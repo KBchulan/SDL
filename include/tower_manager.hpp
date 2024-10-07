@@ -1,9 +1,9 @@
-#ifndef _TOWER_MANAGER_H_
-#define _TOWER_MANAGER_H_
+#ifndef TOWER_MANAGER_HPP
+#define TOWER_MANAGER_HPP
 
 #include "tower.hpp"
-#include "tower_type.hpp"
 #include "manager.hpp"
+#include "tower_type.hpp"
 #include "archer_tower.hpp"
 #include "axeman_tower.hpp"
 #include "gunner_tower.hpp"
@@ -160,4 +160,4 @@ private:
 
 };
 
-#endif // !_TOWER_MANAGER_H_
+#endif // !TOWER_MANAGER_HPP

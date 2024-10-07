@@ -1,5 +1,5 @@
-#ifndef _AXEMAX_H_
-#define _AXEMAX_H_
+#ifndef AXEMAX_HPP
+#define AXEMAX_HPP
 
 #include "tower.hpp"
 #include "resources_manager.hpp"
@@ -42,4 +42,4 @@ public:
 };
 
 
-#endif // !_AXEMAX_H_
+#endif // !AXEMAX_HPP

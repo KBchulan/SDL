@@ -1,5 +1,5 @@
-#ifndef _ENEMY_TYPE_H_
-#define _ENEMY_TYPE_H_
+#ifndef ENEMY_TYPE_HPP
+#define ENEMY_TYPE_HPP
 
 enum class EnemyType
 {

@@ -1,5 +1,5 @@
-#ifndef _SKELETON_ENEMY_H_
-#define _SKELETON_ENEMY_H_
+#ifndef SKELETON_ENEMY_HPP
+#define SKELETON_ENEMY_HPP
 
 #include "enemy.hpp"
 #include "config_manager.hpp"
@@ -55,4 +55,4 @@ public:
 
 };
 
-#endif // !_SKELETON_ENEMY_H_
+#endif // !SKELETON_ENEMY_HPP

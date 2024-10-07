@@ -1,5 +1,5 @@
-#ifndef _TOWER_H_
-#define _TOWER_H_
+#ifndef TOWER_HPP
+#define TOWER_HPP
 
 #include "facing.hpp"
 #include "vector2.hpp"
@@ -256,4 +256,4 @@ private:
 };
 
 
-#endif // !_TOWER_H_
+#endif // !TOWER_HPP

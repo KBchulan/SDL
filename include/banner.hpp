@@ -1,5 +1,5 @@
-#ifndef _BANNER_H_
-#define _BANNER_H_
+#ifndef BANNER_HPP
+#define BANNER_HPP
 
 #include "timer.hpp"
 #include "vector2.hpp"
@@ -78,4 +78,4 @@ private:
 
 };
 
-#endif // !_BANNER_H_
+#endif // !BANNER_HPP

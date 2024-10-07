@@ -1,5 +1,5 @@
-#ifndef _ANIMATION_H_
-#define _ANIMATION_H_
+#ifndef ANIMATION_HPP
+#define ANIMATION_HPP
 
 #include "timer.hpp"
 

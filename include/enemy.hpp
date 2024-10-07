@@ -1,5 +1,5 @@
-#ifndef _ENEMY_H_
-#define _ENEMY_H_
+#ifndef ENEMY_HPP
+#define ENEMY_HPP
 
 #include "timer.hpp"
 #include "route.hpp"
@@ -267,4 +267,4 @@ private:
 	}
 };
 
-#endif // !_ENEMY_H_
+#endif // !ENEMY_HPP

@@ -1,11 +1,11 @@
-#ifndef _PANEL_H_
-#define _PANEL_H_
+#ifndef PANEL_HPP
+#define PANEL_HPP
 
 #include "tile.hpp"
 #include "resources_manager.hpp"
 
-#include <SDL2/SDL.h>
 #include <string>
+#include <SDL2/SDL.h>
 
 class Panel
 {
@@ -229,4 +229,4 @@ private:
 	SDL_Texture* tex_text_foreground = nullptr;
 };
 
-#endif // !_PANEL_H_
+#endif // !PANEL_HPP

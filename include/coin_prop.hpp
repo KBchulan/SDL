@@ -1,5 +1,5 @@
-#ifndef _COIN_PROP_H_
-#define _COIN_PROP_H_
+#ifndef COIN_PROP_HPP
+#define COIN_PROP_HPP
 
 #include "tile.hpp"
 #include "timer.hpp"
@@ -107,4 +107,4 @@ private:
 
 };
 
-#endif // !_COIN_PROP_H_
+#endif // !COIN_PROP_HPP

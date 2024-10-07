@@ -1,10 +1,10 @@
-#ifndef _ROUTE_H_
-#define _ROUTE_H_
+#ifndef ROUTE_HPP
+#define ROUTE_HPP
 
 #include "tile.hpp"
 
-#include <SDL2/SDL.h>
 #include <vector>
+#include <SDL2/SDL.h>
 
 class Route
 {
@@ -84,4 +84,4 @@ private:
 };
 
 
-#endif // !_ROUTE_H_
+#endif // !ROUTE_HPP

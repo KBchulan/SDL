@@ -1,5 +1,5 @@
-#ifndef _TILE_H_
-#define _TILE_H_
+#ifndef TILE_HPP
+#define TILE_HPP
 
 #include <vector>
 
@@ -25,4 +25,4 @@ struct Tile
 
 typedef std::vector<std::vector<Tile>> TileMap;
 
-#endif // !_TILE_H_
+#endif // !TILE_HPP

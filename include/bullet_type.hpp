@@ -1,5 +1,5 @@
-#ifndef _BULLET_TYPE_H_
-#define _BULLET_TYPE_H_
+#ifndef BULLET_TYPE_HPP
+#define BULLET_TYPE_HPP
 
 enum BulletType
 {
@@ -8,4 +8,4 @@ enum BulletType
 	Shell
 };
 
-#endif // !_BULLET_TYPE_H_
+#endif // !BULLET_TYPE_HPP

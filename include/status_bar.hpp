@@ -1,13 +1,13 @@
-#ifndef _STATUS_BAR_H_
-#define _STATUS_BAR_H_
+#ifndef STATUS_BAR_HPP
+#define STATUS_BAR_HPP
 
 #include "coin_manager.hpp"
 #include "home_manager.hpp"
-#include "resources_manager.hpp"
 #include "player_manager.hpp"
+#include "resources_manager.hpp"
 
-#include <SDL2/SDL.h>
 #include <string>
+#include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
 class StatusBar
@@ -116,4 +116,4 @@ private:
 
 };
 
-#endif // !_STATUS_BAR_H_
+#endif // !STATUS_BAR_HPP

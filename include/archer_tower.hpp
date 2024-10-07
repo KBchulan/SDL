@@ -1,5 +1,5 @@
-#ifndef _ARCHER_TOWER_H_
-#define _ARCHER_TOWER_H_
+#ifndef ARCHER_TOWER_HPP
+#define ARCHER_TOWER_HPP
 
 #include "tower.hpp"
 #include "resources_manager.hpp"
@@ -42,4 +42,4 @@ public:
 
 };
 
-#endif // !_ARCHER_TOWER_H_
+#endif // !ARCHER_TOWER_HPP
