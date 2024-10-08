@@ -22,7 +22,7 @@ void BeginAnimation::on_renderer(SDL_Renderer *renderer)
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, begin_animation, NULL, &dst);
         SDL_RenderPresent(renderer);
-        SDL_Delay(50);
+        SDL_Delay(25);
     }
     SDL_Delay(1500);
     for (double alpha = 255; alpha >= 0; alpha -= 15)
@@ -31,7 +31,7 @@ void BeginAnimation::on_renderer(SDL_Renderer *renderer)
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, begin_animation, NULL, &dst);
         SDL_RenderPresent(renderer);
-        SDL_Delay(50);
+        SDL_Delay(25);
     }
 }
 

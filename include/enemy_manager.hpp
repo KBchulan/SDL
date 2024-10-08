@@ -13,8 +13,6 @@
 #include "king_slim_enemy.hpp"
 #include "goblin_priest_enemy.hpp"
 
-
-
 #include <vector>
 #include <SDL2/SDL.h>
 
