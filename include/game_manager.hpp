@@ -13,9 +13,8 @@
 #include "bullet_manager.hpp"
 #include "player_manager.hpp"
 #include "config_manager.hpp"
+#include "begin_animation.hpp"
 #include "resources_manager.hpp"
-
-
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -33,7 +32,7 @@ public:
 
 		Uint64 last_counter = SDL_GetPerformanceCounter();
 		const Uint64 counter_freq = SDL_GetPerformanceFrequency();
-
+		begin_animation->on_renderer(renderer);
 		while (!is_quit)
 		{
 			while (SDL_PollEvent(&event))
@@ -91,6 +90,7 @@ protected:
 		banner = new Banner();
 		place_panel = new PlacePanel();
 		upgrade_panel = new UpgradePanel();
+		begin_animation = new BeginAnimation(renderer, 1, 1, 1);
 	}
 
 	~GameManager()
@@ -119,13 +119,15 @@ private:
 	Panel *upgrade_panel = nullptr;
 	Banner *banner = nullptr;
 
+	BeginAnimation *begin_animation = nullptr;
+
 private:
 	void init_assert(bool flag, const char *err_msg)
 	{
 		if (flag)
 			return;
 
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"��Ϸ����ʧ��", err_msg, window);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"failed", err_msg, window);
 		exit(-1);
 	}
 

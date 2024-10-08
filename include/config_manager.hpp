@@ -19,7 +19,7 @@ class ConfigManager : public Manager<ConfigManager>
 public:
 	struct BasicTemplate
 	{
-		std::string window_title = u8"��ׯ����ս��";
+		std::string window_title = u8"lowr_protect";
 		int window_width = 1280;
 		int window_height = 720;
 	};
