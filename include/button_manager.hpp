@@ -3,8 +3,10 @@
 
 #include "button.hpp"
 #include "manager.hpp"
+#include "game_state.hpp"
 #include "button_center.hpp"
 
+#include <vector>
 #include <string>
 #include <unordered_map>
 
@@ -23,6 +25,8 @@ public:
     {
         button_pool[ButtonID::MENU_StartGame] = new StartGameButton({600, 300, 200, 100}, "../resources/buttons/start_game_idle.png", "../resources/buttons/start_game_hovered.png", "../resources/buttons/start_game_clicked.png");
         button_pool[ButtonID::MENU_ExitGame] = new ExitGameButton({600, 450, 200, 100}, "../resources/buttons/exit_game_idle.png", "../resources/buttons/exit_game_hovered.png", "../resources/buttons/exit_game_clicked.png");
+        scene_button_pool[GameState::Menu].push_back(button_pool[ButtonID::MENU_StartGame]);
+        scene_button_pool[GameState::Menu].push_back(button_pool[ButtonID::MENU_ExitGame]);
 
         for (auto &button : button_pool)
         {
@@ -58,8 +62,9 @@ protected:
     ButtonManager() = default;
     ~ButtonManager() = default;
 
-private:
+public:
     std::unordered_map<ButtonID, Button *> button_pool;
+    std::unordered_map<GameState, std::vector<Button*>> scene_button_pool;
 };
 
 #endif // BUTTON_MANAGER_HPP
