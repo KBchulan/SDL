@@ -27,3 +27,5 @@
   智能指针：https://www.bilibili.com/video/BV18B4y187uL/?spm_id_from=333.999.0.0&vd_source=621e8394e4f064afa62902c0650ccad8
 
   友元：https://docs.oldtimes.me/c.biancheng.net/view/169.html
+
+  sql：https://www.w3school.com.cn/sql/sql_syntax.asp
