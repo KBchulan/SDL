@@ -37,3 +37,5 @@
   大丙tag：https://subingwen.cn/tags/
 
   小满zs-node.js：https://www.bilibili.com/video/BV1cV4y1B7P4/?spm_id_from=333.999.0.0&vd_source=621e8394e4f064afa62902c0650ccad8
+
+  modern c++ teach(!!!!):https://www.bilibili.com/video/BV1D84y1t76J/?vd_source=621e8394e4f064afa62902c0650ccad8
