@@ -40,4 +40,20 @@ protected:
     }
 };
 
+class CallbackButton final : public Button
+{
+public:
+    CallbackButton() = default;
+    ~CallbackButton() = default;
+
+    CallbackButton(SDL_Rect rect, std::string idle_path, std::string hovered_path, std::string clicked_path)
+        : Button(rect, idle_path, hovered_path, clicked_path) {}
+
+protected:
+    void on_click() override
+    {
+        current_state = GameState::Menu;
+    }
+};
+
 #endif // BUTTON_CENTER_HPP

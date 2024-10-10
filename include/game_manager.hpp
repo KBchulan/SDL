@@ -57,6 +57,11 @@ public:
 		return 0;
 	}
 
+	SDL_Renderer *get_renderer() const
+	{
+		return this->renderer;
+	}
+
 protected:
 	GameManager()
 	{

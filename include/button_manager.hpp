@@ -13,7 +13,8 @@
 enum class ButtonID
 {
     MENU_StartGame,
-    MENU_ExitGame
+    MENU_ExitGame,
+    QUIT_callback
 };
 
 class ButtonManager : public Manager<ButtonManager>
@@ -23,10 +24,12 @@ class ButtonManager : public Manager<ButtonManager>
 public:
     bool load_buttons(SDL_Renderer *renderer)
     {
-        button_pool[ButtonID::MENU_StartGame] = new StartGameButton({600, 300, 200, 100}, "../resources/buttons/start_game_idle.png", "../resources/buttons/start_game_hovered.png", "../resources/buttons/start_game_clicked.png");
-        button_pool[ButtonID::MENU_ExitGame] = new ExitGameButton({600, 450, 200, 100}, "../resources/buttons/exit_game_idle.png", "../resources/buttons/exit_game_hovered.png", "../resources/buttons/exit_game_clicked.png");
+        button_pool[ButtonID::MENU_StartGame] = new StartGameButton({600, 300, 200, 100}, "../resources/buttons/menu_start_game_idle.png", "../resources/buttons/menu_start_game_hovered.png", "../resources/buttons/menu_start_game_clicked.png");
+        button_pool[ButtonID::MENU_ExitGame] = new ExitGameButton({600, 450, 200, 100}, "../resources/buttons/menu_menu_exit_game_idle.png", "../resources/buttons/menu_exit_game_hovered.png", "../resources/buttons/menu_exit_game_clicked.png");
+        button_pool[ButtonID::QUIT_callback] =  new CallbackButton({700,240,150,220},"../resources/buttons/quit_call_idle.png","../resources/buttons/quit_call_hovered.png","../resources/buttons/quit_call_pushed.png");
         scene_button_pool[GameState::Menu].push_back(button_pool[ButtonID::MENU_StartGame]);
         scene_button_pool[GameState::Menu].push_back(button_pool[ButtonID::MENU_ExitGame]);
+        scene_button_pool[GameState::Quit].push_back(button_pool[ButtonID::QUIT_callback]);
 
         for (auto &button : button_pool)
         {

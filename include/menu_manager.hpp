@@ -40,7 +40,10 @@ public:
     }
 
 protected:
-    MenuManager() = default;
+    MenuManager()
+    {
+        
+    }
     ~MenuManager() = default;
 
 private:
