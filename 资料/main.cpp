@@ -7,6 +7,7 @@
 #include <climits>
 #include <typeinfo>
 #include <iostream>
+#include <functional>
 #include <unordered_map>
 
 namespace Test
@@ -83,17 +84,22 @@ namespace Test
 
         virtual void on_update(double delta)
         {
-            cout << "111";
+            cout << "111" << endl;
+        }
+
+        virtual void on_updata(double delta)
+        {
+            cout << "aaaa";
         }
     };
 
     class MainPlayer : public Player
     {
     public:
+        using Player::Player;
         MainPlayer() = default;
-        ~MainPlayer() = default;
 
-        void on_update(double delta) final
+        void on_update(double delta) final override
         {
             Player::on_update(delta);
             cout << "2222" << endl;
@@ -111,6 +117,7 @@ namespace Test
     {
         unique_ptr<Player> player(new MainPlayer());
         player->on_update(0.5);
+        player->on_updata(1);
     }
 
     // 模板的优化,即增加默认参数
@@ -199,7 +206,7 @@ namespace Test
     void get_vec_val(const vector<int> &num) noexcept
     {
         int idx = 10;
-        assert(num.at(idx));
+        // assert(num.at(idx));
     }
 
     void character_8()
@@ -309,6 +316,150 @@ namespace Test
 
     // nullptr:解决c++中 ”NULL=0“ 的问题，引入nullptr专门用来初始化空类型指针，不做演示，总之这样用就ok了
 
+    // lambda:匿名函数,
+    /*
+    []()opt ->return{ }
+    []:& = a this
+    ():不说
+    */
+    class Dog
+    {
+    public:
+        Dog() = default;
+        ~Dog() = default;
+
+        void capture()
+        {
+            auto f = [&]()
+            {
+                x++;
+                y++;
+                cout << x << " " << y << " " << x + y << endl;
+                return x + y;
+            };
+
+            f();
+        }
+
+    private:
+        int x = 5;
+        int y = 10;
+    };
+
+    void character_11()
+    {
+        unique_ptr<Dog> dog = make_unique<Dog>();
+        dog->capture();
+    }
+
+    // callback
+    void character_12(std::function<void()> callback)
+    {
+        callback = []() {};
+        callback();
+    }
+
+    // constexpr:常量在编译时执行，反之在程序运行时执行
+    // 表示只读的场景使用const,常量引用也是const，表明常量(编译时就确定的值)的场景用constexpr
+    constexpr int add(int a, int b)
+    {
+        return a + b;
+    }
+
+    void character_13()
+    {
+        constexpr int coun = 15;
+        cout << coun << endl;
+        struct aaa
+        {
+            const int w = 0;
+        };
+        constexpr aaa a;
+        cout << a.w << endl;
+        cout << add(2, 3) << endl;
+    }
+
+    // 委托构造函数和继承构造函数
+    class Bird
+    {
+    public:
+        Bird() = default;
+        Bird(int a)
+        {
+            this->a = a;
+        }
+
+        Bird(int a, int b) : Bird(a)
+        {
+            this->b = b;
+        }
+
+        Bird(int a, int b, int c) : Bird(a, b)
+        {
+            this->c = c;
+        }
+
+        void print_info()
+        {
+            cout << a << " " << b << " " << c << endl;
+        }
+
+    private:
+        int a;
+        int b;
+        int c;
+    };
+
+    class Base
+    {
+    public:
+        Base() = default;
+        Base(int x, int y) : x(x), y(y) {}
+        virtual ~Base() = default;
+
+        virtual void print_info()
+        {
+            cout << x << " " << y << " " << endl;
+        }
+
+    public:
+        const int x;
+        const int y;
+    };
+
+    class Child final : public Base
+    {
+    public:
+        Child() = default;
+        Child(int x, int y, int z, int w) : Base(x, y), z(z), w(w) {}
+        ~Child() = default;
+
+        void print_info() final override
+        {
+            Base::print_info();
+            cout << z << endl;
+            cout << w << endl;
+            add();
+        }
+
+        void add()
+        {
+            cout << "aaa" << endl;
+        }
+
+    private:
+        const int z = 5;
+        const int w = 7;
+    };
+
+    void character_14()
+    {
+        shared_ptr<Bird> bird = make_shared<Bird>(1, 2, 8);
+        unique_ptr<Base> child(new Child(1, 2, 3, 9));
+        bird->print_info();
+        child->print_info();
+    }
+
 };
 
 int main(int argc, char **argv)
@@ -319,7 +470,7 @@ int main(int argc, char **argv)
 
     {
         using namespace Test;
-        character_10();
+        character_14();
     }
 
     return 0;
