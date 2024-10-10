@@ -27,3 +27,15 @@
   智能指针：https://www.bilibili.com/video/BV18B4y187uL/?spm_id_from=333.999.0.0&vd_source=621e8394e4f064afa62902c0650ccad8
 
   友元：https://docs.oldtimes.me/c.biancheng.net/view/169.html
+
+  sql：https://www.w3school.com.cn/sql/sql_syntax.asp
+
+  static：https://www.cnblogs.com/biyeymyhjob/archive/2012/07/19/2598815.html
+
+  继承和多态：https://blog.lyh543.cn/notes/cpp/cpp-grammar/cpp-inheritance-derive-polymorphism.html
+
+  大丙tag：https://subingwen.cn/tags/
+
+  小满zs-node.js：https://www.bilibili.com/video/BV1cV4y1B7P4/?spm_id_from=333.999.0.0&vd_source=621e8394e4f064afa62902c0650ccad8
+
+  modern c++ teach(!!!!):https://www.bilibili.com/video/BV1D84y1t76J/?vd_source=621e8394e4f064afa62902c0650ccad8
