@@ -9,6 +9,7 @@
 #include <iostream>
 #include <functional>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace Test
 {
@@ -97,7 +98,7 @@ namespace Test
     {
     public:
         using Player::Player;
-        MainPlayer() = default;
+        ~MainPlayer() = default;
 
         void on_update(double delta) final override
         {
@@ -109,7 +110,7 @@ namespace Test
     class SecondPlayer final : public Player
     {
     public:
-        SecondPlayer() = default;
+        using Player::Player;
         ~SecondPlayer() = default;
     };
 
@@ -186,7 +187,7 @@ namespace Test
     {
         string msg;
         MyException(const string &msg) : msg(msg) {}
-        ~MyException() = default;
+        virtual ~MyException() = default;
 
         void print()
         {
@@ -230,7 +231,7 @@ namespace Test
 
     // auto和decltype自动类型推导
     // 用auto定义需要初始化,推导时说白了就是相当于一个或多个单词（占位符号）
-    // auto只有在修饰指针或镇volatile时才会记录const
+    // auto只有在修饰指针或者volatile时才会记录const
     // auto：STL遍历，泛型编程
     // decltype规则：普通变量就是变量类型，函数则为其右值，传入纯左值就可以有修饰符号
     // 应用：泛型编程中推导类型，返回类型后置（与auto联合使用）
@@ -274,7 +275,7 @@ namespace Test
 
     // 基于范围的for循环
     // 第一次确定范围，随后遍历，只进行一次
-    // set和关联型容器如map和unordered_map这种是只读的（范围循环）
+    // set和关联型容器如map和unordered_map这种是不能修改里边的first值的，也就是key值
     /*
     容器类型整理：
     1.序列容器：vector,  deque,  list,  forward_list
@@ -330,15 +331,15 @@ namespace Test
 
         void capture()
         {
-            auto f = [&]()
+            auto f = [&](int z) mutable
             {
                 x++;
                 y++;
                 cout << x << " " << y << " " << x + y << endl;
-                return x + y;
+                return x + y + z;
             };
 
-            f();
+            f(10);
         }
 
     private:
@@ -358,6 +359,10 @@ namespace Test
         callback = []() {};
         callback();
     }
+
+    /*--------------------------------------*/
+    //               优化                    //
+    /*--------------------------------------*/
 
     // constexpr:常量在编译时执行，反之在程序运行时执行
     // 表示只读的场景使用const,常量引用也是const，表明常量(编译时就确定的值)的场景用constexpr
@@ -414,7 +419,10 @@ namespace Test
     {
     public:
         Base() = default;
-        Base(int x, int y) : x(x), y(y) {}
+        explicit Base(int x, int y) : x(x), y(y) {}
+        explicit Base(const Base &base) : x(base.x), y(base.y) {}
+        explicit Base(Base &&base) : x(base.x), y(base.y) {}
+
         virtual ~Base() = default;
 
         virtual void print_info()
@@ -431,7 +439,10 @@ namespace Test
     {
     public:
         Child() = default;
-        Child(int x, int y, int z, int w) : Base(x, y), z(z), w(w) {}
+        explicit Child(int x, int y, int z, int w) : Base(x, y), z(z), w(w) {}
+        // 移动构造函数，将右值转化为左值，避免拷贝构造函数的开销
+        explicit Child(Child &&child) : Base(child.x, child.y), z(child.z), w(child.w) {}
+
         ~Child() = default;
 
         void print_info() final override
@@ -459,6 +470,68 @@ namespace Test
         bird->print_info();
         child->print_info();
     }
+
+    // 右值引用类型:&&
+    // 左值引用类型:&
+    // const Test& t可以返回任何引用类型
+    // 对于需要动态申请大量资源的类，应该设计移动构造函数，以提高程序效率。需要注意的是，我们一般在提供移动构造函数的同时，也会提供常量左值引用的拷贝构造函数，以保证移动不成还可以使用拷贝构造函数
+    /*
+    值：左值（可取地址的值）
+       右值（只能提供数据而无地址）
+       |--纯右值（非引用返回的临时变量、运算表达式产生的临时变量、原始字面量和 lambda 表达式等）
+       |--将亡值（与右值引用相关的表达式，比如，T&&类型函数的返回值、 std::move 的返回值等）
+    */
+    /*  特性：1.T&& 和 auto&&表示未定引用类型(const T&&为右值引用)
+
+    */
+    class Test
+    {
+    public:
+        Test() : nums(new int(20))
+        {
+            cout << "create" << endl;
+        }
+
+        Test(const Test &test) : nums(new int(*test.nums))
+        {
+            cout << "create copy" << endl;
+        }
+
+        Test(Test &&a) : nums(a.nums) {}
+
+        ~Test()
+        {
+            cout << "destroy" << endl;
+        }
+
+    public:
+        shared_ptr<int> nums;
+    };
+
+    string str()
+    {
+        return "helkl";
+    }
+
+    template <typename T>
+    void func(const T &&x)
+    {
+        T a = 5;
+    }
+
+    void character_15()
+    {
+        constexpr int a = 15; // a为左值，15是字面量，属于右值
+        int &&b = 520;
+        string &&c = str();
+        func(10);
+        // func(a);   //左值不可用
+        Test test = Test();
+        cout << *test.nums << endl;
+        cout << "-------------" << endl;
+    }
+
+    // 转移和完美转发
 
 };
 
