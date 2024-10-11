@@ -4,7 +4,7 @@
 #include "../include/game_manager.hpp"
 #include "../include/menu_manager.hpp"
 
-GameState current_state = GameState::Menu;
+GameState current_state = GameState::Game;
 
 int main(int argc, char **argv)
 {

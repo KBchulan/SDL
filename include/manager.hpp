@@ -9,12 +9,11 @@ public:
 	{
 		if (!manager)
 			manager = new T();
-
 		return manager;
 	}
 
 private:
-	static T* manager;
+	inline static T* manager = nullptr;
 
 protected:
 	Manager() = default;
@@ -23,8 +22,5 @@ protected:
 	Manager& operator=(const Manager&) = delete;
 
 };
-
-template <typename T>
-T* Manager<T>::manager = nullptr;
 
 #endif // !MANAGER_HPP
