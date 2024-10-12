@@ -16,6 +16,12 @@
 
 ​	流场寻路：      https://yimicgh.top/%E7%AC%94%E8%AE%B0/Flow-field-pathfinding-01/
 
+#### 一些库的学习：
+
+boost：https://www.boost.org/doc/libs/1_86_0/
+
+jsoncpp：http://jsoncpp.sourceforge.net/old.html
+
 #### 一些知识的学习：
 
   模板：https://juejin.cn/post/7078530622527897631
