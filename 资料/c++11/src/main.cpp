@@ -1,7 +1,9 @@
-#include "../include/smart_ptr.hpp"
+// #include "../include/smart_ptr.hpp"
 
 #include <set>
 #include <map>
+#include <chrono>
+#include <thread>
 #include <vector>
 #include <string>
 #include <memory>
@@ -12,6 +14,10 @@
 #include <functional>
 #include <unordered_map>
 #include <unordered_set>
+
+#include <SDL2/SDL.h>
+
+#include "type.hpp"
 
 namespace Test
 {
@@ -596,6 +602,7 @@ namespace Test
         constexpr int a = {1314};
         constexpr int b{1314};
         const int arr1[] = {1,2,3};
+        const_cast<int*> (arr1);
 
         int *ptr = new int{1314};
         double bbbb = double{52.134};
@@ -624,14 +631,24 @@ namespace USING
     template<typename T>
     using my_map = map<int, T>;
 
+    template <typename T, typename U>
+    void swap(T& t,U& u) {
+        T tmp = t;
+        t=(T)u;u=(U)tmp;
+    }
+
     void test() noexcept
     {
         ll a = 50000;
         ull b = 50000;
+        int x = 5;
+        double y = 6.5;
         cout << a << b <<endl;
 
         my_map<int> int_map;
         int_map.insert(make_pair(1,2));
+        swap(x, y);
+        cout << x << " " << y << endl;
         for (const auto& ints : int_map)
         {
             cout << ints.first << " " << ints.second << endl;
@@ -670,8 +687,8 @@ namespace USING
     void bind_test()
     {
         // auto callback = bind(add, placeholders::_1, placeholders::_2)(10,20);
-        auto callback = bind(add, placeholders::_1, placeholders::_2);
-        cout << callback(20, 30) <<endl;
+        auto callback = bind(add, placeholders::_1, placeholders::_2)(50, 60);
+        cout << callback <<endl;
     }
 
     // std::function无法直接包装类成员，加上bind就可以了
@@ -684,25 +701,209 @@ namespace USING
 
     void bind_function() {
         shared_ptr<Bind> bind_iu = nullptr;
-        auto f1 = bind(&Bind::out, bind_iu.get(), placeholders::_1, placeholders::_2);
+        std::function<void(int,int)> f1 = bind(&Bind::out, bind_iu.get(), placeholders::_1, placeholders::_2);
         f1(101,102);
     }
 }
 
 namespace POD
 {
+    using namespace std;
+    // 普通的旧数据:Plain,Old
+    // POD:: trivial , standard layout
+    // trivial：不写构造（包括无参的，用default再次变得平凡），拷贝构造，移动构造，赋值构造一样
+    // standard layout：1.所有成员访问等级相同
+
+    // 类型判断
+    class A {
+        A() = default;
+        ~A() = default;
+
+        A(const A &) = delete;
+        A(const A &&) = delete;
+        A &operator=(const A&) = delete;
+        A &operator=(const A&&) = delete;
+
+    };
+
+    class B{};
+    class C:public B{};
+
+    void leval_jud() {
+        // trivial
+        cout << is_trivial<A>::value << endl;
+        // standard_layout
+        cout << is_standard_layout<B>::value << endl;
+    }
+    // 总之，POD是我们的类和结构体初始化更为简单
+
+}
+
+namespace DEFAULTANDDELETE
+{
+    // 声明自定义的类，啥都不写有默认的
+    // 1.无参构造 2.拷贝构造 3.移动构造（noexpect） 4.拷贝赋值 5.移动赋值 6.析构函数
+    // 构造和赋值是基本一样的，在于对象的存在与否以及签名
+    class A{};
+
+    A get() {
+        A a;
+        return a;
+    }
+
+    void test1() {
+        A a;                // 1
+        A b(a);             // 2
+        A c(get());         // 3
+        A d = a;            // 4
+        A e = std::move(a); // 5
+    }
+
+    // 我们自定义后类便不是POD类型了，我们便无法享受POD的便利，但是我们可以通过=default恢复POD
+    class B {
+    public:
+        int x;
+        B() = default;
+        B(int x) : x(x) {}
+    };
+
+    void test2() {
+        std::unique_ptr<B> b = std::make_unique<B>(5);
+    }
+
+    // delete只是禁止一些函数的使用，无讲解必要，删除就用不了了嘛
+
+}
+
+namespace FRIEND {
+    using namespace std;
+    // friend会破坏我们的封装性，但是如CRTP等场景又会让我们的代码更简洁，因此讲解一下
+
+    // 1.不用再写class
+    class AAA;
+
+    using class_a = AAA;
+
+    class BBB {
+        // friend class AAA;
+        // friend AAA;
+        friend class_a;
+
+    private:
+        inline static int x = 5;
+        void print(int y)const {
+            cout << x << y << endl;
+        }
+    };
+
+    class AAA {
+    public:
+
+        void printe(std::function<void(int)> &callback) {
+            callback = bind(&BBB::print, b.get(),placeholders::_1);
+            callback(6);
+        }
+    private:
+        std::shared_ptr<BBB> b = std::make_shared<BBB>();
+
+    };
+
+    void test() {
+        std::shared_ptr<AAA> n = make_shared<AAA>();
+        std::function<void(int)> callback;
+        n->printe(callback);
+    }
+
+    // 上面是常规语法，基本与98标准区别不大，下面则是在template中的声明
+    class Tom;
+    template <typename T>
+    class Peson {
+
+        friend T;
+
+    public:
+    };
+
+    void test_x() {
+        // 实例化时才确定友元
+        std::shared_ptr<Peson<Tom>> person = make_shared<Peson<Tom>>();
+    }
+
+    template<typename T>
+    class Rectange {
+        friend T;
+    public:
+        explicit Rectange(int w, int h):w(w), h(h) { }
+
+    private:
+        const int w;
+        const int h;
+    };
+
+    class Vertify {
+    public:
+        bool verify(int w, int h ,Rectange<Vertify>& rec) {
+            return w == rec.w && h == rec.h;
+        }
+    };
+
+    void friend_last() {
+        std::shared_ptr<Vertify> ver = std::make_shared<Vertify>();
+        std::shared_ptr<Rectange<Vertify>> rec = std::make_shared<Rectange<Vertify>>(10, 20);
+        cout << ver->verify(10, 20, *rec) << endl;
+    }
+}
+
+namespace ENUM {
+    using namespace std;
+    // 强类型枚举
+
+    // simple,会有缺陷，enum不论定义在哪里都是全局可见的，所有的命名空间都可以，那么
+    // 就可能会发生重命名问题
+    enum Colors {
+        Red = 200,
+        Blue,
+        Green
+    };
+    using CCCCColor = Colors;
+
+    // 强类型枚举,无法隐式转换,默认为int，也可以指定为除了wchar_t以外的所有类型
+    //
+    enum class Colorss {
+        Red = 200,
+        Blue,
+        Green
+    };
+
+    void simple_test() {
+        CCCCColor color = Colors::Blue;
+        cout << color << endl;
+
+        Colorss colore = Colorss::Green;
+        cout << static_cast<int>(colore) << endl;
+
+        InsID ins = InsID::Atomic;
+        cout << static_cast<int>(ins) << endl;
+
+    }
+
+    // wchar_t为16或32位字符型（2或4字节），被称为宽字符，可以用来表示unicode
+    void wchar_t_test() {
+        wchar_t wide[] = L"aaaAAAA";
+        std::wcout << wide << std::endl;
+    }
 
 }
 
 int main(int argc, char **argv)
 {
-    std::ios::sync_with_stdio(0);
-    std::cin.tie(0);
-    std::cout.tie(0);
+    std::ios::sync_with_stdio(NULL);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     {
         using namespace Test;
-        character_17();
+        // character_17();
     }
     {
         using namespace USING;
@@ -711,6 +912,32 @@ int main(int argc, char **argv)
         // bind_test();
         // bind_function();
     }
+    {
+        using namespace POD;
+        // leval_jud();
+    }
+    {
+        using namespace DEFAULTANDDELETE;
+        // test2();
+    }
+    {
+        using namespace FRIEND;
+        // test_x();
+        // friend_last();
+    }
+    {
+        using namespace ENUM;
+        // while (1) {
+        //     std::this_thread::sleep_for(std::chrono::seconds(2));
+        //     static int x = 1;
+        //     x++;
+        //     if(x == 3)
+        //         break;
+        // }
+        simple_test();
+        wchar_t_test();
+    }
+
 
     return 0;
 }
