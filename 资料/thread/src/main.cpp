@@ -14,7 +14,9 @@ int main(int argc,char **argv) {
     {
         using namespace Thread;
         // create_workspace();
-        exit_workspace();
+        // exit_workspace();
+        // recycle_workspace();
+        detach_workspace();
     }
 
 

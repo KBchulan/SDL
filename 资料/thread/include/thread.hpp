@@ -7,6 +7,7 @@
 
 #include <chrono>
 #include <thread>
+#include <memory>
 #include <iostream>
 #include <functional>
 
@@ -37,7 +38,7 @@ namespace Thread {
         const pthread_t thread_1 = pthread_self();
         cout << thread_1 << endl;
 
-        // 创建子线程：传出，属性，回调，实参
+        // 创建子线程：传出，属性，回调，实参(arg)
         pthread_t id;
         pthread_create(&id, nullptr, create_callback, nullptr);
     }
@@ -61,7 +62,7 @@ namespace Thread {
         return nullptr;
     }
 
-    // 退出主线程
+    // 退出主线程,退出数据会直接返回主线程
     inline void exit_workspace() {
         cout << pthread_self() << endl;
 
@@ -73,6 +74,80 @@ namespace Thread {
     }
 
 
+    /*******
+     线程回收
+     *******/
+
+    // 线程回收原理：子线程的内核资源由其主线程进行回收，并可记录返回参数
+
+    struct Recycle_Student {
+        const int id = 10;
+        const int age = 45;
+        const std::string name = "LiLy";
+
+        Recycle_Student() = default;
+        virtual ~Recycle_Student() noexcept = default;
+        Recycle_Student(const Recycle_Student &) = delete;
+        Recycle_Student(const Recycle_Student &&) = delete;
+        Recycle_Student& operator=(const Recycle_Student &) = delete;
+        Recycle_Student& operator=(const Recycle_Student &&) = delete;
+    };
+
+    inline void *recycle_callback(void * arg) {
+        cout << "this thread is be recycled" <<endl;
+        std::shared_ptr<Recycle_Student> p = make_shared<Recycle_Student>();
+
+        // 将这个要回收的学生对象返回主线程
+        pthread_exit(p.get());
+    }
+
+    inline void recycle_workspace() {
+        pthread_t id;
+        pthread_create(&id, nullptr, recycle_callback, nullptr);
+
+        // 承接子线程退出释放的数据
+        void *ptr = nullptr;
+
+        auto callback = [&]()->void {
+            // 线程回收:pthread_t, 线程退出返回的数据
+            // 整体可以通过如下流程使用第二个参数:通过pthread_exit的返回值释放子线程资源(返回一个资源地址)
+            // 并通过void **__thread_return(join的参数二)访问这个地址
+
+            // 上文需保证在同一片地址空间，比如同时使用主堆栈(这个实际是我们默认退出线程返回的位置)
+            pthread_join(id, &ptr);
+            const auto stu_tmp = static_cast<Recycle_Student *>(ptr);
+            cout << stu_tmp->id << endl
+                 << stu_tmp->age << endl
+                 << stu_tmp->name << endl;
+        };
+
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        callback();
+        pthread_exit(nullptr);
+    }
+
+    /*******
+     线程分离
+     *******/
+
+    inline void *detach_callback(void *arg) {
+        cout << pthread_self() << endl;
+        static int x = 1;
+        while(x < 8) {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            cout << x++ << endl;
+        }
+        return nullptr;
+    }
+
+    inline void detach_workspace() {
+        pthread_t id;
+        pthread_create(&id, nullptr ,detach_callback, nullptr);
+
+        cout << "main thread" << endl;
+        // pthread_detach(id);
+        pthread_exit(nullptr);
+    }
 
 }
 
