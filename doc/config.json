@@ -1,0 +1,84 @@
+{
+	"basic":	{
+		"window_width":	1280,
+		"window_height":	720,
+		"window_title":	"村庄保卫战！"
+	},
+	"player":	{
+		"speed":	5,
+		"normal_attack_interval":	0.800000011920929,
+		"normal_attack_damage":	10,
+		"skill_interval":	3,
+		"skill_damage":	20
+	},
+	"tower":	{
+		"archer":	{
+			"interval":	[1, 0.899999976158142, 0.899999976158142, 0.800000011920929, 0.800000011920929, 0.699999988079071, 0.699999988079071, 0.600000023841858, 0.600000023841858, 0.5],
+			"damage":	[10, 12, 14, 16, 18, 20, 22, 24, 25, 25],
+			"view_range":	[5, 5, 5, 5, 6, 6, 6, 6, 6, 7],
+			"cost":	[50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
+			"upgrade_cost":	[30, 40, 50, 60, 70, 80, 90, 100, 100]
+		},
+		"axeman":	{
+			"interval":	[2, 2, 2, 2, 2, 1.5, 1.5, 1.5, 1.5, 1.5],
+			"damage":	[15, 17, 19, 21, 23, 25, 27, 29, 31, 35],
+			"view_range":	[3, 3, 3, 3, 3, 4, 4, 4, 4, 5],
+			"cost":	[70, 70, 70, 70, 70, 70, 70, 70, 70, 70],
+			"upgrade_cost":	[50, 60, 70, 80, 90, 100, 100, 100, 100]
+		},
+		"gunner":	{
+			"interval":	[2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
+			"damage":	[25, 28, 30, 32, 35, 38, 40, 42, 45, 50],
+			"view_range":	[4, 4, 4, 4, 4, 5, 5, 5, 5, 6],
+			"cost":	[120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+			"upgrade_cost":	[80, 90, 100, 100, 100, 100, 100, 100, 100]
+		}
+	},
+	"enemy":	{
+		"slim":	{
+			"hp":	80,
+			"speed":	0.600000023841858,
+			"damage":	1,
+			"reward_ratio":	0.5,
+			"recover_interval":	10,
+			"recover_range":	-1,
+			"recover_intensity":	25
+		},
+		"king_slim":	{
+			"hp":	200,
+			"speed":	0.800000011920929,
+			"damage":	1,
+			"reward_ratio":	0.5,
+			"recover_interval":	10,
+			"recover_range":	-1,
+			"recover_intensity":	25
+		},
+		"skeleton":	{
+			"hp":	200,
+			"speed":	1.5,
+			"damage":	1,
+			"reward_ratio":	0.5,
+			"recover_interval":	10,
+			"recover_range":	-1,
+			"recover_intensity":	25
+		},
+		"goblin":	{
+			"hp":	400,
+			"speed":	1.2000000476837158,
+			"damage":	2,
+			"reward_ratio":	0.800000011920929,
+			"recover_interval":	10,
+			"recover_range":	-1,
+			"recover_intensity":	25
+		},
+		"goblin_priest":	{
+			"hp":	999,
+			"speed":	0.600000023841858,
+			"damage":	2,
+			"reward_ratio":	0.800000011920929,
+			"recover_interval":	5,
+			"recover_range":	4,
+			"recover_intensity":	100
+		}
+	}
+}
